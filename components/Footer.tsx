@@ -1,6 +1,6 @@
 'use client';
 
-import { Mail, Github, Linkedin, Heart, Music } from 'lucide-react';
+import { Mail, Github, Linkedin, Music } from 'lucide-react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -56,11 +56,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 pt-8 border-t border-border text-center text-muted-foreground text-sm">
-          <p className="flex items-center justify-center gap-1">
-            © {currentYear} Noah Crouse. Built with
-            <Heart className="w-4 h-4 text-red-500 fill-current" />
-            and Next.js
-          </p>
+          <p>© {currentYear} Noah Crouse</p>
         </div>
       </div>
     </footer>
