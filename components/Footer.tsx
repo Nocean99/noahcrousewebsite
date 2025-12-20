@@ -1,6 +1,6 @@
 'use client';
 
-import { Mail, Github, Linkedin, Heart } from 'lucide-react';
+import { Mail, Github, Linkedin, Heart, Music } from 'lucide-react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -8,17 +8,22 @@ export default function Footer() {
   const socialLinks = [
     {
       icon: Github,
-      href: 'https://github.com/noahcrouse',
+      href: 'https://github.com/nocean99',
       label: 'GitHub',
     },
     {
       icon: Linkedin,
-      href: 'https://linkedin.com/in/noahcrouse',
+      href: 'https://www.linkedin.com/in/noahcrouse',
       label: 'LinkedIn',
     },
     {
+      icon: Music,
+      href: 'https://on.soundcloud.com/bFskgiLZ949vcoxbyh',
+      label: 'SoundCloud',
+    },
+    {
       icon: Mail,
-      href: 'mailto:noah@noahcrouse.com',
+      href: 'mailto:noahsea99@icloud.com',
       label: 'Email',
     },
   ];

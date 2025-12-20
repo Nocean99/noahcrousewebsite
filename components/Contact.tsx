@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Mail, Github, Linkedin, Send } from 'lucide-react';
+import { Mail, Github, Linkedin, Send, Music } from 'lucide-react';
 
 interface ContactForm {
   name: string;
@@ -46,20 +46,26 @@ export default function Contact() {
     {
       icon: Mail,
       label: 'Email',
-      href: 'mailto:noah@noahcrouse.com',
-      text: 'noah@noahcrouse.com',
+      href: 'mailto:noahsea99@icloud.com',
+      text: 'noahsea99@icloud.com',
     },
     {
       icon: Github,
       label: 'GitHub',
-      href: 'https://github.com/noahcrouse',
-      text: 'github.com/noahcrouse',
+      href: 'https://github.com/nocean99',
+      text: 'github.com/nocean99',
     },
     {
       icon: Linkedin,
       label: 'LinkedIn',
-      href: 'https://linkedin.com/in/noahcrouse',
+      href: 'https://www.linkedin.com/in/noahcrouse',
       text: 'linkedin.com/in/noahcrouse',
+    },
+    {
+      icon: Music,
+      label: 'SoundCloud',
+      href: 'https://on.soundcloud.com/bFskgiLZ949vcoxbyh',
+      text: 'soundcloud.com/noahcrouse',
     },
   ];
 

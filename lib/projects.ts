@@ -32,7 +32,7 @@ export const projects: Project[] = [
     techStack: ['Flutter', 'Python Flask', 'PostgreSQL', 'OpenAI API', 'Render'],
     status: 'Live on TestFlight',
     links: {
-      github: 'https://github.com/yourusername/ai-gym-bro',
+      github: 'https://github.com/nocean99/ai-gym-bro',
       testflight: '#',
     },
     image: '/images/gym-bro-mockup.png',
@@ -53,21 +53,50 @@ export const projects: Project[] = [
     techStack: ['React', 'Flutter', 'Serverless Functions', 'OpenAI API', 'Netlify'],
     status: 'In Development',
     links: {
-      github: 'https://github.com/yourusername/dietpalai',
+      github: 'https://github.com/nocean99/dietpalai',
       live: '#',
     },
     image: '/images/dietpal-mockup.png',
   },
   {
-    id: 'future-project',
-    title: 'Your Next Big Thing',
-    tagline: 'Coming Soon',
-    description: 'Building something amazing. Stay tuned!',
-    features: ['Innovative features', 'User-focused design', 'Modern tech stack'],
-    techStack: ['React', 'TypeScript', 'Next.js'],
-    status: 'Planning',
-    links: {},
-    image: '/images/placeholder.png',
+    id: 'snowball-runner',
+    title: 'Snowball Runner',
+    tagline: 'Endless Downhill Mayhem',
+    description:
+      'Developed an addictive endless runner game where players guide a snowball down a procedurally generated mountain slope. The snowball dynamically grows with speed and shrinks upon collision, creating a unique risk-reward gameplay loop. Features spawning obstacles including trees and skiers that challenge players to maintain momentum while navigating the chaotic descent.',
+    features: [
+      'Dynamic snowball physics with size variation',
+      'Procedural mountain generation',
+      'Progressive difficulty with increasing speed',
+      'Obstacle avoidance gameplay with trees and skiers',
+      'Score tracking and high score system',
+    ],
+    techStack: ['Unity', 'C#', 'Unity Physics'],
+    status: 'Completed',
+    links: {
+      github: 'https://github.com/nocean99/snowball-runner',
+    },
+    image: '/images/snowball-runner-mockup.png',
+  },
+  {
+    id: 'ai-image-detector',
+    title: 'AI Image Detector',
+    tagline: 'Detect AI-Generated Content',
+    description:
+      'Created a machine learning application that analyzes and identifies AI-generated images with high accuracy. The tool helps users distinguish between authentic and AI-created visual content, addressing growing concerns about digital authenticity and deepfakes.',
+    features: [
+      'Real-time image analysis',
+      'High-accuracy AI detection algorithm',
+      'Support for multiple AI generation models',
+      'Detailed confidence scoring',
+      'Batch processing capabilities',
+    ],
+    techStack: ['Python', 'TensorFlow', 'OpenCV', 'Flask', 'React'],
+    status: 'Completed',
+    links: {
+      github: 'https://github.com/nocean99/ai-image-detector',
+    },
+    image: '/images/ai-detector-mockup.png',
   },
 ];
 
@@ -76,7 +105,8 @@ export const techStack = {
   frontend: ['React', 'Next.js', 'TypeScript', 'HTML/CSS', 'Tailwind'],
   backend: ['Python', 'Flask', 'Node.js', 'REST APIs'],
   databases: ['PostgreSQL', 'Firebase', 'SQLite'],
-  aiml: ['OpenAI API', 'GPT Integration', 'Prompt Engineering'],
+  aiml: ['OpenAI API', 'GPT Integration', 'TensorFlow', 'Machine Learning'],
+  gamedev: ['Unity', 'C#', 'Unity Physics'],
   devops: ['Git', 'GitHub', 'CI/CD', 'Render', 'Vercel', 'Netlify'],
-  tools: ['VS Code', 'Cursor', 'Xcode', 'Android Studio'],
+  tools: ['VS Code', 'Cursor', 'Xcode', 'Android Studio', 'Unity Editor'],
 };
