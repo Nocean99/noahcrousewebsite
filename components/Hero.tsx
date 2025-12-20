@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
@@ -12,6 +12,9 @@ export default function Hero() {
     'Fitness Tech Enthusiast',
     'Full-Stack Engineer',
     'AI Integration Specialist',
+    'Audio Specialist',
+    'Sound Designer',
+    'Game Developer',
   ];
 
   useEffect(() => {
@@ -20,7 +23,7 @@ export default function Hero() {
     }, 3000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [roles.length]);
 
   const scrollToNextSection = () => {
     const aboutSection = document.querySelector('#about');
@@ -46,18 +49,22 @@ export default function Hero() {
           </h1>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="mb-12 h-16 flex items-center justify-center"
-        >
+        <div className="mb-12 h-16 flex items-center justify-center">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-light">
-            <span className="gradient-text">
-              {roles[currentRole]}
-            </span>
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={currentRole}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5 }}
+                className="gradient-text inline-block"
+              >
+                {roles[currentRole]}
+              </motion.span>
+            </AnimatePresence>
           </h2>
-        </motion.div>
+        </div>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
