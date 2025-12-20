@@ -1,36 +1,136 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Noah Crouse - Portfolio Website
 
-## Getting Started
+A modern, interactive portfolio website built with Next.js 14+, TypeScript, and Tailwind CSS.
 
-First, run the development server:
+## 🎨 Features
+
+- **Hero Section** - Animated landing with rotating role titles
+- **About Section** - Professional bio with tech stack showcase
+- **Projects Section** - Featured projects with detailed descriptions
+- **Skills Section** - Technical skills with animated progress bars
+- **Contact Section** - Working contact form with validation
+- **Dark Mode** - Smooth dark/light mode toggle
+- **Responsive Design** - Perfect experience on all devices
+- **Smooth Animations** - Framer Motion powered animations
+- **SEO Optimized** - Proper meta tags and structured data
+
+## 🚀 Quick Start
+
+### Development
 
 ```bash
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Open http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Build
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+# Create production build
+npm run build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Start production server
+npm start
+```
 
-## Learn More
+## 📝 Customization Guide
 
-To learn more about Next.js, take a look at the following resources:
+### 1. Personal Information
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Update contact information in `components/Contact.tsx` and `components/Footer.tsx`:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```typescript
+// Update email, GitHub, and LinkedIn links
+const socialLinks = [
+  { href: 'mailto:your-email@example.com', ... },
+  { href: 'https://github.com/yourusername', ... },
+  { href: 'https://linkedin.com/in/yourusername', ... },
+];
+```
 
-## Deploy on Vercel
+### 2. Project Information
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Edit `lib/projects.ts` to add your own projects:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```typescript
+export const projects: Project[] = [
+  {
+    id: 'your-project',
+    title: 'Your Project Title',
+    tagline: 'One-line description',
+    description: 'Detailed description...',
+    features: ['Feature 1', 'Feature 2'],
+    techStack: ['React', 'Node.js'],
+    status: 'Live',
+    links: {
+      github: 'https://github.com/...',
+      live: 'https://...',
+    },
+  },
+];
+```
+
+### 3. About Section
+
+Update bio text in `components/About.tsx`.
+
+### 4. Skills & Tech Stack
+
+Modify skills in `components/Skills.tsx` and tech stack in `lib/projects.ts`.
+
+### 5. Colors & Theme
+
+Customize colors in `app/globals.css`:
+
+```css
+:root {
+  --accent: #3b82f6; /* Primary blue */
+  --accent-secondary: #8b5cf6; /* Secondary purple */
+}
+```
+
+## 🌐 Deployment to Vercel
+
+1. Push your code to GitHub
+2. Go to [vercel.com](https://vercel.com) and import your repository
+3. Vercel will auto-detect Next.js and deploy
+4. Add custom domain `www.noahcrouse.com` in Project Settings → Domains
+
+## 📦 Project Structure
+
+```
+noah-portfolio/
+├── app/              # Next.js app directory
+├── components/       # React components
+├── lib/             # Data and utilities
+└── public/          # Static assets
+```
+
+## 🛠️ Tech Stack
+
+- **Framework:** Next.js 14+ (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **Animations:** Framer Motion
+- **Form Handling:** React Hook Form
+- **Icons:** Lucide React
+
+## 📋 TODO Before Launch
+
+- [ ] Update placeholder text with your information
+- [ ] Add actual email, GitHub, LinkedIn links
+- [ ] Update project descriptions and links
+- [ ] Add project screenshots to `public/images/`
+- [ ] Add professional photo
+- [ ] Test on mobile devices
+- [ ] Deploy to Vercel
+- [ ] Connect custom domain
+
+---
+
+Built with ❤️ using Next.js
