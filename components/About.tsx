@@ -72,18 +72,30 @@ export default function About() {
             className="space-y-6"
           >
             <p className="text-lg text-foreground/80 leading-relaxed">
-              I build mobile apps that help people track their fitness and health.
-              From AI-powered workout logging to nutrition tracking, I combine my passion
-              for fitness with development to create tools people actually want to use.
+              I'm a multidisciplinary developer and audio designer with a passion for creating
+              immersive digital experiences. With over a decade of music production experience,
+              I've evolved from crafting sonic landscapes to building interactive applications
+              that combine technology, design, and user experience.
+            </p>
+            <p className="text-lg text-foreground/80 leading-relaxed">
+              My journey spans mobile app development, game design, and sound engineering.
+              I build AI-powered fitness apps like AI Gym Bro and DietPalAI that help people
+              track their health, design games in Unity with dynamic physics and procedural
+              generation, and create immersive audio experiences using advanced synthesis and
+              middleware like Wwise.
             </p>
             <p className="text-lg text-foreground/80 leading-relaxed">
               My approach is simple: ship fast, get feedback, and iterate. I believe in
               building products that solve real problems, using modern technologies like
-              AI to create intuitive, conversational interfaces that make complex tasks simple.
+              AI to create intuitive, conversational interfaces. Whether I'm coding a Flutter
+              app, designing game audio, or crafting soundscapes, I'm always pushing creative
+              and technical boundaries.
             </p>
             <p className="text-lg text-foreground/80 leading-relaxed">
-              When I'm not coding, you'll find me at the gym testing out the very apps I build.
-              This hands-on approach ensures I'm creating solutions that truly work for users.
+              When I'm not coding, you'll find me at the gym testing the very apps I build,
+              experimenting with new sound design techniques, or exploring the intersection
+              of technology and creativity. This hands-on approach ensures I'm creating
+              solutions that truly work for users.
             </p>
           </motion.div>
         </div>
