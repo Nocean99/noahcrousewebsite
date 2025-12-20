@@ -82,7 +82,7 @@ export default function Skills() {
   };
 
   return (
-    <section id="skills" ref={ref} className="py-20 sm:py-32 bg-muted/30">
+    <section id="skills" ref={ref} className="py-32 sm:py-48 bg-muted/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

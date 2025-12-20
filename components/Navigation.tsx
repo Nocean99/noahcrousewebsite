@@ -55,7 +55,7 @@ export default function Navigation() {
               <button
                 key={link.href}
                 onClick={() => scrollToSection(link.href)}
-                className="px-10 py-2.5 rounded-lg font-medium bg-gradient-to-r from-accent to-accent-secondary text-gray-900 hover:scale-105 hover:shadow-lg transition-all duration-300"
+                className="px-16 py-3 rounded-lg font-medium bg-gradient-to-r from-accent to-accent-secondary text-gray-900 hover:scale-105 hover:shadow-lg transition-all duration-300"
               >
                 {link.label}
               </button>
@@ -87,7 +87,7 @@ export default function Navigation() {
               <button
                 key={link.href}
                 onClick={() => scrollToSection(link.href)}
-                className="block w-full text-center px-10 py-3 rounded-lg font-medium bg-gradient-to-r from-accent to-accent-secondary text-gray-900 hover:scale-105 transition-all"
+                className="block w-full text-center px-16 py-3 rounded-lg font-medium bg-gradient-to-r from-accent to-accent-secondary text-gray-900 hover:scale-105 transition-all"
               >
                 {link.label}
               </button>
