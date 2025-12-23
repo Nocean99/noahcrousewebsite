@@ -5,6 +5,7 @@ import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Code2, Smartphone, Brain, Dumbbell } from 'lucide-react';
 import { techStack } from '@/lib/projects';
+import Image from 'next/image';
 
 export default function About() {
   const ref = useRef(null);
@@ -52,15 +53,21 @@ export default function About() {
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12 items-center mb-32">
-          {/* Left side - Image/Illustration placeholder */}
+          {/* Left side - Headshot */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="relative"
           >
-            <div className="aspect-square bg-gradient-to-br from-accent to-accent-secondary rounded-2xl flex items-center justify-center text-white text-6xl font-bold shadow-2xl">
-              NC
+            <div className="aspect-square relative rounded-2xl overflow-hidden shadow-2xl">
+              <Image
+                src="/headshot.png"
+                alt="Noah Crouse headshot"
+                fill
+                className="object-cover"
+                priority
+              />
             </div>
           </motion.div>
 
