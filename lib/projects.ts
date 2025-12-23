@@ -36,7 +36,7 @@ export const projects: Project[] = [
       github: 'https://github.com/nocean99/ai-gym-bro',
       testflight: '#',
     },
-    image: '/images/gym-bro-mockup.png',
+    image: '/images/gym-bro-screenshot.png',
   },
   {
     id: 'dietpalai',
