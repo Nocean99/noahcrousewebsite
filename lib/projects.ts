@@ -13,6 +13,7 @@ export interface Project {
   };
   image?: string;
   video?: string;
+  hideImage?: boolean;
 }
 
 export const projects: Project[] = [
@@ -96,7 +97,7 @@ export const projects: Project[] = [
     links: {
       github: 'https://github.com/nocean99/ai-image-detector',
     },
-    image: '/images/ai-detector-mockup.png',
+    hideImage: true,
   },
 ];
 

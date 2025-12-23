@@ -59,22 +59,26 @@ export default function Projects() {
               key={project.id}
               variants={projectVariants}
               className={`flex flex-col ${
-                index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
+                project.hideImage
+                  ? ''
+                  : index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
               } gap-8 lg:gap-12 items-center`}
             >
               {/* Project Image */}
-              <div className="w-full lg:w-1/2">
-                <div className="relative aspect-video bg-gradient-to-br from-accent/20 to-accent-secondary/20 rounded-2xl overflow-hidden group">
-                  <div className="absolute inset-0 flex items-center justify-center text-6xl font-bold text-muted-foreground/20">
-                    {project.title.split(' ').map(word => word[0]).join('')}
+              {!project.hideImage && (
+                <div className="w-full lg:w-1/2">
+                  <div className="relative aspect-video bg-gradient-to-br from-accent/20 to-accent-secondary/20 rounded-2xl overflow-hidden group">
+                    <div className="absolute inset-0 flex items-center justify-center text-6xl font-bold text-muted-foreground/20">
+                      {project.title.split(' ').map(word => word[0]).join('')}
+                    </div>
+                    {/* Placeholder for actual project images */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-accent-secondary/10 group-hover:scale-105 transition-transform duration-300" />
                   </div>
-                  {/* Placeholder for actual project images */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-accent-secondary/10 group-hover:scale-105 transition-transform duration-300" />
                 </div>
-              </div>
+              )}
 
               {/* Project Info */}
-              <div className="w-full lg:w-1/2 space-y-6">
+              <div className={`${project.hideImage ? 'w-full' : 'w-full lg:w-1/2'} space-y-6`}>
                 <div>
                   <div className="inline-block px-3 py-1 bg-accent/10 text-accent rounded-full text-sm mb-3">
                     {project.status}
