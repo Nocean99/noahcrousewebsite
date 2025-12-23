@@ -70,18 +70,18 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" ref={ref} className="py-48 sm:py-64">
+    <section id="contact" ref={ref} className="py-64 sm:py-80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-32"
+          className="text-center mb-40"
         >
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-12">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-16">
             Get In Touch
           </h2>
-          <div className="w-20 h-1 bg-accent mx-auto mb-12" />
+          <div className="w-20 h-1 bg-accent mx-auto mb-16" />
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Have a project in mind or want to collaborate? I'd love to hear from you.
           </p>

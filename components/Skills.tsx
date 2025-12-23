@@ -82,15 +82,15 @@ export default function Skills() {
   };
 
   return (
-    <section id="skills" ref={ref} className="py-48 sm:py-64 bg-muted/30">
+    <section id="skills" ref={ref} className="py-64 sm:py-80 bg-muted/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-32"
+          className="text-center mb-40"
         >
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-12">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-16">
             Skills & Approach
           </h2>
           <div className="w-20 h-1 bg-accent mx-auto" />
@@ -101,7 +101,7 @@ export default function Skills() {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
-          className="mb-20"
+          className="mb-32"
         >
           <h3 className="text-3xl font-bold text-center mb-12">My Approach</h3>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -164,7 +164,7 @@ export default function Skills() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.8 }}
-          className="mt-20 text-center"
+          className="mt-32 text-center"
         >
           <div className="inline-block px-6 py-3 bg-gradient-to-r from-accent to-accent-secondary text-white rounded-full">
             <p className="font-medium">Continuously learning and building</p>

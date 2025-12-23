@@ -37,21 +37,21 @@ export default function About() {
   };
 
   return (
-    <section id="about" ref={ref} className="py-48 sm:py-64 bg-muted/30">
+    <section id="about" ref={ref} className="py-64 sm:py-80 bg-muted/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-32"
+          className="text-center mb-40"
         >
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-12">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-16">
             About Me
           </h2>
           <div className="w-20 h-1 bg-accent mx-auto" />
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
+        <div className="grid md:grid-cols-2 gap-12 items-center mb-32">
           {/* Left side - Image/Illustration placeholder */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -105,7 +105,7 @@ export default function About() {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
-          className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20"
+          className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-32"
         >
           {stats.map((stat, index) => (
             <motion.div
