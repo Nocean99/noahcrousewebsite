@@ -31,7 +31,7 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" ref={ref} className="py-64 sm:py-80">
+    <section id="projects" ref={ref} className="py-96 sm:py-112">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -78,7 +78,7 @@ export default function Projects() {
               )}
 
               {/* Project Info */}
-              <div className={`${project.hideImage ? 'w-full' : 'w-full lg:w-1/2'} space-y-6`}>
+              <div className={`${project.hideImage ? 'w-full max-w-4xl mx-auto text-center' : 'w-full lg:w-1/2'} space-y-6`}>
                 <div>
                   <div className="inline-block px-3 py-1 bg-accent/10 text-accent rounded-full text-sm mb-3">
                     {project.status}
@@ -98,7 +98,7 @@ export default function Projects() {
                 {/* Features */}
                 <div>
                   <h4 className="font-semibold mb-3 text-foreground/90">Key Features:</h4>
-                  <ul className="space-y-2">
+                  <ul className={`space-y-2 ${project.hideImage ? 'inline-block text-left' : ''}`}>
                     {project.features.map((feature, idx) => (
                       <li key={idx} className="flex items-start">
                         <span className="text-accent mr-2">▸</span>
@@ -111,7 +111,7 @@ export default function Projects() {
                 {/* Tech Stack */}
                 <div>
                   <h4 className="font-semibold mb-3 text-foreground/90">Tech Stack:</h4>
-                  <div className="flex flex-wrap gap-2">
+                  <div className={`flex flex-wrap gap-2 ${project.hideImage ? 'justify-center' : ''}`}>
                     {project.techStack.map((tech) => (
                       <span
                         key={tech}
@@ -124,7 +124,7 @@ export default function Projects() {
                 </div>
 
                 {/* Links */}
-                <div className="flex flex-wrap gap-4 pt-4">
+                <div className={`flex flex-wrap gap-4 pt-4 ${project.hideImage ? 'justify-center' : ''}`}>
                   {project.links.github && (
                     <a
                       href={project.links.github}
