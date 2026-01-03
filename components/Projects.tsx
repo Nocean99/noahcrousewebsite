@@ -31,19 +31,19 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" ref={ref} className="py-64 sm:py-80">
+    <section id="projects" ref={ref} className="py-80 sm:py-96">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-40"
+          className="text-center mb-48"
         >
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-16">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-20">
             Featured Projects
           </h2>
-          <div className="w-20 h-1 bg-accent mx-auto mb-16" />
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <div className="w-20 h-1 bg-accent mx-auto mb-20" />
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Real applications built and deployed, solving real problems for real users.
           </p>
         </motion.div>
@@ -52,7 +52,7 @@ export default function Projects() {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
-          className="space-y-32"
+          className="space-y-40"
         >
           {projects.map((project, index) => (
             <motion.div
@@ -62,7 +62,7 @@ export default function Projects() {
                 project.hideImage
                   ? ''
                   : index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
-              } gap-8 lg:gap-12 items-center`}
+              } gap-12 lg:gap-16 items-center`}
             >
               {/* Project Image */}
               {!project.hideImage && (
@@ -78,27 +78,27 @@ export default function Projects() {
               )}
 
               {/* Project Info */}
-              <div className={`${project.hideImage ? 'w-full' : 'w-full lg:w-1/2'} space-y-6`}>
+              <div className={`${project.hideImage ? 'w-full' : 'w-full lg:w-1/2'} space-y-8`}>
                 <div>
                   <div className="inline-block px-3 py-1 bg-accent/10 text-accent rounded-full text-sm mb-3">
                     {project.status}
                   </div>
-                  <h3 className="text-3xl sm:text-4xl font-bold mb-2">
+                  <h3 className="text-3xl sm:text-4xl font-bold mb-3">
                     {project.title}
                   </h3>
-                  <p className="text-xl text-accent-secondary font-medium mb-4">
+                  <p className="text-xl text-accent-secondary font-medium mb-6">
                     {project.tagline}
                   </p>
                 </div>
 
-                <p className="text-foreground/80 leading-relaxed">
+                <p className="text-foreground/80 leading-loose text-lg">
                   {project.description}
                 </p>
 
                 {/* Features */}
                 <div>
-                  <h4 className="font-semibold mb-3 text-foreground/90">Key Features:</h4>
-                  <ul className="space-y-2">
+                  <h4 className="font-semibold mb-4 text-foreground/90">Key Features:</h4>
+                  <ul className="space-y-3">
                     {project.features.map((feature, idx) => (
                       <li key={idx} className="flex items-start">
                         <span className="text-accent mr-2">▸</span>
@@ -110,8 +110,8 @@ export default function Projects() {
 
                 {/* Tech Stack */}
                 <div>
-                  <h4 className="font-semibold mb-3 text-foreground/90">Tech Stack:</h4>
-                  <div className="flex flex-wrap gap-2">
+                  <h4 className="font-semibold mb-4 text-foreground/90">Tech Stack:</h4>
+                  <div className="flex flex-wrap gap-3">
                     {project.techStack.map((tech) => (
                       <span
                         key={tech}
@@ -124,7 +124,7 @@ export default function Projects() {
                 </div>
 
                 {/* Links */}
-                <div className="flex flex-wrap gap-4 pt-4">
+                <div className="flex flex-wrap gap-4 pt-6">
                   {project.links.github && (
                     <a
                       href={project.links.github}

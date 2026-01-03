@@ -44,12 +44,12 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-12">
             Noah Crouse
           </h1>
         </motion.div>
 
-        <div className="mb-12 h-16 flex items-center justify-center">
+        <div className="mb-16 h-16 flex items-center justify-center">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-light">
             <AnimatePresence mode="wait">
               <motion.span
@@ -70,7 +70,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-12"
+          className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-16 leading-relaxed"
         >
           Building AI-powered mobile apps that help people track their fitness and health.
           From workout logging to nutrition tracking, I create tools people actually want to use.
@@ -80,7 +80,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          className="flex flex-col sm:flex-row gap-6 justify-center items-center"
         >
           <button
             onClick={() => document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' })}

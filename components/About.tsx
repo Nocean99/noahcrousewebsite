@@ -37,21 +37,21 @@ export default function About() {
   };
 
   return (
-    <section id="about" ref={ref} className="py-64 sm:py-80 bg-muted/30">
+    <section id="about" ref={ref} className="py-80 sm:py-96 bg-muted/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-40"
+          className="text-center mb-48"
         >
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-16">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-20">
             About Me
           </h2>
           <div className="w-20 h-1 bg-accent mx-auto" />
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center mb-32">
+        <div className="grid md:grid-cols-2 gap-16 items-center mb-40">
           {/* Left side - Image/Illustration placeholder */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -69,29 +69,29 @@ export default function About() {
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="space-y-6"
+            className="space-y-8"
           >
-            <p className="text-lg text-foreground/80 leading-relaxed">
+            <p className="text-lg text-foreground/80 leading-loose">
               I'm a multidisciplinary developer and audio designer with a passion for creating
               immersive digital experiences. With over a decade of music production experience,
               I've evolved from crafting sonic landscapes to building interactive applications
               that combine technology, design, and user experience.
             </p>
-            <p className="text-lg text-foreground/80 leading-relaxed">
+            <p className="text-lg text-foreground/80 leading-loose">
               My journey spans mobile app development, game design, and sound engineering.
               I build AI-powered fitness apps like AI Gym Bro and DietPalAI that help people
               track their health, design games in Unity with dynamic physics and procedural
               generation, and create immersive audio experiences using advanced synthesis and
               middleware like Wwise.
             </p>
-            <p className="text-lg text-foreground/80 leading-relaxed">
+            <p className="text-lg text-foreground/80 leading-loose">
               My approach is simple: ship fast, get feedback, and iterate. I believe in
               building products that solve real problems, using modern technologies like
               AI to create intuitive, conversational interfaces. Whether I'm coding a Flutter
               app, designing game audio, or crafting soundscapes, I'm always pushing creative
               and technical boundaries.
             </p>
-            <p className="text-lg text-foreground/80 leading-relaxed">
+            <p className="text-lg text-foreground/80 leading-loose">
               When I'm not coding, you'll find me at the gym testing the very apps I build,
               experimenting with new sound design techniques, or exploring the intersection
               of technology and creativity. This hands-on approach ensures I'm creating
@@ -105,7 +105,7 @@ export default function About() {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
-          className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-32"
+          className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-40"
         >
           {stats.map((stat, index) => (
             <motion.div

@@ -82,15 +82,15 @@ export default function Skills() {
   };
 
   return (
-    <section id="skills" ref={ref} className="py-64 sm:py-80 bg-muted/30">
+    <section id="skills" ref={ref} className="py-80 sm:py-96 bg-muted/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-40"
+          className="text-center mb-48"
         >
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-16">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-20">
             Skills & Approach
           </h2>
           <div className="w-20 h-1 bg-accent mx-auto" />
@@ -101,10 +101,10 @@ export default function Skills() {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
-          className="mb-32"
+          className="mb-40"
         >
-          <h3 className="text-3xl font-bold text-center mb-12">My Approach</h3>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <h3 className="text-3xl font-bold text-center mb-16">My Approach</h3>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
             {principles.map((principle, index) => (
               <motion.div
                 key={index}
@@ -125,8 +125,8 @@ export default function Skills() {
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
         >
-          <h3 className="text-3xl font-bold text-center mb-12">Technical Skills</h3>
-          <div className="grid md:grid-cols-3 gap-8">
+          <h3 className="text-3xl font-bold text-center mb-16">Technical Skills</h3>
+          <div className="grid md:grid-cols-3 gap-10">
             {skillCategories.map((category, idx) => (
               <motion.div
                 key={idx}
