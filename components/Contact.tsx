@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Github, Linkedin, Music } from 'lucide-react';
+import { Github, Linkedin, Music, Mail, Phone } from 'lucide-react';
 
 export default function Contact() {
   const ref = useRef(null);
@@ -32,7 +32,7 @@ export default function Contact() {
 
   return (
     <section id="contact" ref={ref} className="py-96 sm:py-112">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -52,7 +52,7 @@ export default function Contact() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="max-w-2xl mx-auto space-y-8"
+          className="max-w-2xl mx-auto space-y-8 text-center"
         >
           <div className="text-center">
             <h3 className="text-2xl font-bold mb-4">Let's Connect</h3>
@@ -60,14 +60,13 @@ export default function Contact() {
               I'm currently open to freelance projects and collaboration opportunities.
               Feel free to reach out through any of the channels below.
             </p>
-
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/10 border border-green-500/20 rounded-full text-green-600 mb-8">
               <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
               Available for freelance projects
             </div>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-4 flex flex-col items-center">
             {socialLinks.map((link, index) => (
               <motion.a
                 key={index}
@@ -77,25 +76,43 @@ export default function Contact() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-                className="flex items-center gap-4 p-4 bg-card border border-border rounded-lg hover:border-accent transition-colors group"
+                className="flex items-center justify-center gap-4 p-4 bg-card border border-border rounded-lg hover:border-accent transition-colors group w-full max-w-md"
               >
                 <link.icon className="w-6 h-6 text-accent group-hover:scale-110 transition-transform" />
-                <div>
+                <div className="text-center">
                   <p className="font-medium">{link.label}</p>
                   <p className="text-sm text-muted-foreground">{link.text}</p>
                 </div>
               </motion.a>
             ))}
-          </div>
 
-          <div className="pt-8">
-            <p className="text-foreground/70 mb-4 text-center">Currently working on:</p>
-            <div className="p-4 bg-card border border-border rounded-lg">
-              <p className="font-semibold gradient-text">AI Gym Bro V2</p>
-              <p className="text-sm text-muted-foreground mt-1">
-                Adding advanced workout analytics and social features
-              </p>
-            </div>
+            <motion.a
+              href="mailto:noahsea99@icloud.com"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.4, delay: 0.6 }}
+              className="flex items-center justify-center gap-4 p-4 bg-card border border-border rounded-lg hover:border-accent transition-colors group w-full max-w-md"
+            >
+              <Mail className="w-6 h-6 text-accent group-hover:scale-110 transition-transform" />
+              <div className="text-center">
+                <p className="font-medium">Email</p>
+                <p className="text-sm text-muted-foreground">noahsea99@icloud.com</p>
+              </div>
+            </motion.a>
+
+            <motion.a
+              href="tel:613-222-3052"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.4, delay: 0.7 }}
+              className="flex items-center justify-center gap-4 p-4 bg-card border border-border rounded-lg hover:border-accent transition-colors group w-full max-w-md"
+            >
+              <Phone className="w-6 h-6 text-accent group-hover:scale-110 transition-transform" />
+              <div className="text-center">
+                <p className="font-medium">Phone</p>
+                <p className="text-sm text-muted-foreground">613-222-3052</p>
+              </div>
+            </motion.a>
           </div>
         </motion.div>
       </div>

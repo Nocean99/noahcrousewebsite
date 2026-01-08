@@ -12,6 +12,7 @@ export interface Project {
     testflight?: string;
   };
   image?: string;
+  image2?: string;
   video?: string;
   hideImage?: boolean;
 }
@@ -36,7 +37,8 @@ export const projects: Project[] = [
       github: 'https://github.com/nocean99/ai-gym-bro',
       testflight: '#',
     },
-    image: '/images/gym-bro-mockup.png',
+    image: '/gymbro.png',
+    image2: '/gymbro-2.png',
   },
   {
     id: 'dietpalai',
@@ -57,7 +59,7 @@ export const projects: Project[] = [
       github: 'https://github.com/nocean99/dietpalai',
       live: '#',
     },
-    image: '/images/dietpal-mockup.png',
+    image: '/diet-pal.png',
   },
   {
     id: 'snowball-runner',
@@ -77,7 +79,7 @@ export const projects: Project[] = [
     links: {
       github: 'https://github.com/nocean99/snowball-runner',
     },
-    image: '/images/snowball-runner-mockup.png',
+    image: '/snowball-game.png',
   },
   {
     id: 'ai-image-detector',
