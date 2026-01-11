@@ -43,6 +43,8 @@
 
 html {
   scroll-behavior: smooth;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -52,6 +54,8 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-width: 100%;
+  overflow-x: hidden;
 }
 
 /* Custom animations */
