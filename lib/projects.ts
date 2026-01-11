@@ -57,7 +57,7 @@ export const projects: Project[] = [
     status: 'In Development',
     links: {
       github: 'https://github.com/nocean99/dietpalai',
-      live: '#',
+      live: 'https://dietpalai.netlify.app',
     },
     image: '/diet-pal.png',
   },
@@ -86,13 +86,13 @@ export const projects: Project[] = [
     title: 'AI Image Detector',
     tagline: 'Detect AI-Generated Content',
     description:
-      'Created a machine learning application that analyzes and identifies AI-generated images with high accuracy. The tool helps users distinguish between authentic and AI-created visual content, addressing growing concerns about digital authenticity and deepfakes.',
+      'Created a machine learning application that analyzes and identifies AI-generated images. Performed well with older Midjourney models but showed inconsistent results with newer generators. This project taught me that meaningful detection accuracy requires training specifically against individual AI models rather than attempting broad generalization.',
     features: [
       'Real-time image analysis',
-      'High-accuracy AI detection algorithm',
-      'Support for multiple AI generation models',
+      'TensorFlow-based detection algorithm',
       'Detailed confidence scoring',
       'Batch processing capabilities',
+      'Learned: model-specific training is essential for accuracy',
     ],
     techStack: ['Python', 'TensorFlow', 'OpenCV', 'Flask', 'React'],
     status: 'Completed',
