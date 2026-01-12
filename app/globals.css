@@ -69,6 +69,12 @@ body {
   width: 100%;
 }
 
+/* Force center all section containers */
+.max-w-7xl {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
 /* Custom animations */
 @keyframes fade-in {
   from {
