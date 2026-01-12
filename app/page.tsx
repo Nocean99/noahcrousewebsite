@@ -8,35 +8,39 @@ import Footer from '@/components/Footer';
 
 export default function Home() {
   return (
-    <main className="min-h-screen w-full">
-      <Hero />
+    <main className="min-h-screen w-full flex flex-col items-center">
+      <div className="w-full">
+        <Hero />
+      </div>
       
       {/* About Section with generous spacing */}
-      <div className="py-64 md:py-80">
+      <div className="py-64 md:py-80 w-full">
         <About />
       </div>
       
       {/* Projects Section with generous spacing */}
-      <div className="py-64 md:py-80">
+      <div className="py-64 md:py-80 w-full">
         <Projects />
       </div>
       
       {/* Sound Design Section with generous spacing */}
-      <div className="py-64 md:py-80">
+      <div className="py-64 md:py-80 w-full">
         <SoundDesign />
       </div>
       
       {/* Skills Section with generous spacing */}
-      <div className="py-64 md:py-80">
+      <div className="py-64 md:py-80 w-full">
         <Skills />
       </div>
       
       {/* Contact Section with generous spacing */}
-      <div className="py-64 md:py-80">
+      <div className="py-64 md:py-80 w-full">
         <Contact />
       </div>
       
-      <Footer />
+      <div className="w-full">
+        <Footer />
+      </div>
     </main>
   );
 }
