@@ -2,10 +2,13 @@
 
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,20 +20,12 @@ export default function Navigation() {
   }, []);
 
   const navLinks = [
-    { href: '#about', label: 'About' },
-    { href: '#projects', label: 'Projects' },
-    { href: '#sound-design', label: 'Sound Design' },
-    { href: '#skills', label: 'Skills' },
-    { href: '#contact', label: 'Contact' },
+    { href: '/about', label: 'About' },
+    { href: '/case-studies', label: 'Case Studies' },
+    { href: '/audio', label: 'Audio' },
+    { href: '/creative-tech', label: 'Creative Tech' },
+    { href: '/contact', label: 'Work With Me' },
   ];
-
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMobileMenuOpen(false);
-    }
-  };
 
   return (
     <nav
@@ -42,28 +37,29 @@ export default function Navigation() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          <Link
+            href="/"
             className="text-xl font-bold hover:scale-105 transition-transform"
           >
             <span className="gradient-text">NC</span>
-          </button>
+          </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden md:flex items-center gap-4">
             {navLinks.map((link) => (
-              <button
+              <Link
                 key={link.href}
-                onClick={() => scrollToSection(link.href)}
-                className="px-16 py-3 rounded-lg font-medium bg-gradient-to-r from-accent to-accent-secondary text-gray-900 hover:scale-105 hover:shadow-lg transition-all duration-300"
+                href={link.href}
+                className={`px-5 py-2 rounded-lg font-medium transition-all duration-300 ${
+                  pathname === link.href
+                    ? 'bg-gradient-to-r from-accent to-accent-secondary text-gray-900'
+                    : 'text-foreground/70 hover:text-foreground hover:bg-muted'
+                }`}
               >
                 {link.label}
-              </button>
+              </Link>
             ))}
           </div>
 
-          {/* Mobile Menu Button */}
           <div className="md:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -80,18 +76,22 @@ export default function Navigation() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="md:hidden bg-background/95 backdrop-blur-md border-b border-border">
           <div className="px-4 py-6 space-y-3">
             {navLinks.map((link) => (
-              <button
+              <Link
                 key={link.href}
-                onClick={() => scrollToSection(link.href)}
-                className="block w-full text-center px-16 py-3 rounded-lg font-medium bg-gradient-to-r from-accent to-accent-secondary text-gray-900 hover:scale-105 transition-all"
+                href={link.href}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`block w-full text-center px-5 py-3 rounded-lg font-medium transition-all ${
+                  pathname === link.href
+                    ? 'bg-gradient-to-r from-accent to-accent-secondary text-gray-900'
+                    : 'text-foreground/70 hover:text-foreground hover:bg-muted'
+                }`}
               >
                 {link.label}
-              </button>
+              </Link>
             ))}
           </div>
         </div>

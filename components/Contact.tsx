@@ -86,33 +86,6 @@ export default function Contact() {
               </motion.a>
             ))}
 
-            <motion.a
-              href="mailto:noahsea99@icloud.com"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.4, delay: 0.6 }}
-              className="flex items-center justify-center gap-4 p-4 bg-card border border-border rounded-lg hover:border-accent transition-colors group w-full max-w-md"
-            >
-              <Mail className="w-6 h-6 text-accent group-hover:scale-110 transition-transform" />
-              <div className="text-center">
-                <p className="font-medium">Email</p>
-                <p className="text-sm text-muted-foreground">noahsea99@icloud.com</p>
-              </div>
-            </motion.a>
-
-            <motion.a
-              href="tel:613-222-3052"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.4, delay: 0.7 }}
-              className="flex items-center justify-center gap-4 p-4 bg-card border border-border rounded-lg hover:border-accent transition-colors group w-full max-w-md"
-            >
-              <Phone className="w-6 h-6 text-accent group-hover:scale-110 transition-transform" />
-              <div className="text-center">
-                <p className="font-medium">Phone</p>
-                <p className="text-sm text-muted-foreground">613-222-3052</p>
-              </div>
-            </motion.a>
           </div>
         </motion.div>
       </div>

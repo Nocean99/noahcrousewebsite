@@ -3,20 +3,20 @@ import "./globals.css";
 import Navigation from "@/components/Navigation";
 
 export const metadata: Metadata = {
-  title: "Noah Crouse | Mobile Developer & AI Integration Specialist",
-  description: "Mobile developer passionate about building AI-powered fitness and health applications. Specializing in Flutter, React, and full-stack development.",
-  keywords: ["Noah Crouse", "Mobile Developer", "Flutter Developer", "AI Integration", "Fitness Tech", "Full-Stack Developer"],
+  title: "Noah Crouse | Creative Technologist",
+  description: "Creative technologist blending AI, code, and a past life in electronic music. Building AI-powered apps and interactive experiences that feel intuitive, purposeful, and human.",
+  keywords: ["Noah Crouse", "Creative Technologist", "AI Apps", "Sound Design", "Game Development", "Flutter", "React", "Interactive Experiences"],
   authors: [{ name: "Noah Crouse" }],
   openGraph: {
-    title: "Noah Crouse | Mobile Developer",
-    description: "Mobile developer passionate about building AI-powered fitness and health applications.",
+    title: "Noah Crouse | Creative Technologist",
+    description: "Creative technologist blending AI, code, and a past life in electronic music.",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Noah Crouse | Mobile Developer",
-    description: "Mobile developer passionate about building AI-powered fitness and health applications.",
+    title: "Noah Crouse | Creative Technologist",
+    description: "Creative technologist blending AI, code, and a past life in electronic music.",
   },
 };
 
