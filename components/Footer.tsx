@@ -35,7 +35,7 @@ export default function Footer() {
           {/* Logo/Name */}
           <div className="text-center md:text-left">
             <h3 className="text-2xl font-bold gradient-text mb-2">Noah Crouse</h3>
-            <p className="text-muted-foreground">Building the future, one app at a time.</p>
+            <p className="text-muted-foreground">Creative technologist. AI apps. Interactive sound. Code with personality.</p>
           </div>
 
           {/* Social Links */}
