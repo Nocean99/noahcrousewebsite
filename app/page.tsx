@@ -4,11 +4,11 @@ import Link from 'next/link';
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen w-full">
       <Hero />
 
       {/* Story section */}
-      <section className="py-24 md:py-32">
+      <section className="py-32 md:py-40">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 text-lg text-foreground/70 leading-relaxed">
           <p>
             For more than a decade, I produced electronic music, shaping synths and

@@ -30,16 +30,16 @@ export default function Hero() {
     <section className="relative overflow-hidden">
       <div className="absolute inset-0 gradient-bg opacity-10" />
 
-      <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-32 pb-16">
+      <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-36 pb-24">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-4">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6">
             Noah Crouse
           </h1>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-light gradient-text mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-light gradient-text mb-8">
             Creative Technologist
           </h2>
         </motion.div>
@@ -48,7 +48,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-lg sm:text-xl text-foreground/80 max-w-2xl mx-auto mb-8 leading-relaxed"
+          className="text-lg sm:text-xl text-foreground/80 max-w-2xl mx-auto mb-10 leading-relaxed"
         >
           Creative technologist blending AI, code, and a past life in electronic music.
           Building AI-powered mobile apps and interactive experiences that feel intuitive,
@@ -59,7 +59,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.35 }}
-          className="text-base sm:text-lg text-foreground/60 max-w-2xl mx-auto mb-12 leading-relaxed"
+          className="text-base sm:text-lg text-foreground/60 max-w-2xl mx-auto mb-16 leading-relaxed"
         >
           <p>
             I&apos;m Noah, a creative technologist who builds AI-powered apps,
@@ -76,7 +76,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-20"
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-24"
         >
           <Link
             href="/case-studies"
@@ -99,32 +99,33 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.65 }}
           className="mb-16"
         >
-          <h3 className="text-sm uppercase tracking-widest text-muted-foreground mb-8">
+          <h3 className="text-sm uppercase tracking-widest text-muted-foreground mb-10">
             Featured Work
           </h3>
-          <div className="grid sm:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-3 gap-8">
             {featuredProjects.map((project) => (
               <Link
                 key={project.title}
                 href={project.href}
-                className="group bg-card border border-border rounded-xl overflow-hidden hover:border-accent transition-all duration-300"
+                className="group bg-card border border-border rounded-2xl overflow-hidden hover:border-accent hover:shadow-xl hover:shadow-accent/5 transition-all duration-300"
               >
                 <div className="relative aspect-video bg-muted overflow-hidden">
                   <Image
                     src={project.image}
                     alt={project.title}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent" />
                 </div>
-                <div className="p-4 text-left">
-                  <h4 className="font-semibold mb-1 group-hover:text-accent transition-colors">
+                <div className="p-5 text-left">
+                  <h4 className="font-semibold text-lg mb-2 group-hover:text-accent transition-colors">
                     {project.title}
                   </h4>
                   <p className="text-sm text-muted-foreground leading-relaxed">
                     {project.description}
                   </p>
-                  <span className="inline-block mt-3 text-xs text-accent font-medium">
+                  <span className="inline-block mt-4 text-xs text-accent font-medium tracking-wide uppercase">
                     View case study &rarr;
                   </span>
                 </div>

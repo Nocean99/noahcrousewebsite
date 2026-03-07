@@ -13,19 +13,19 @@ const fadeUp = {
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen pt-24">
+    <main className="min-h-screen w-full pt-24">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div {...fadeUp} className="text-center mb-16">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4">About Me</h1>
+        <motion.div {...fadeUp} className="text-center mb-20">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">About Me</h1>
           <div className="w-20 h-1 bg-accent mx-auto" />
         </motion.div>
 
         <motion.div
           {...fadeUp}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="flex justify-center mb-16"
+          className="flex justify-center mb-20"
         >
-          <div className="w-64 h-64 relative rounded-2xl overflow-hidden shadow-2xl">
+          <div className="w-72 h-72 relative rounded-2xl overflow-hidden shadow-2xl ring-1 ring-border">
             <Image
               src="/headshot.png"
               alt="Noah Crouse"
@@ -36,7 +36,7 @@ export default function AboutPage() {
           </div>
         </motion.div>
 
-        <div className="space-y-16">
+        <div className="space-y-20">
           {/* Who I Am */}
           <motion.section {...fadeUp} transition={{ duration: 0.6, delay: 0.2 }}>
             <h2 className="text-2xl font-bold mb-4 gradient-text">Who I Am</h2>
@@ -116,7 +116,7 @@ export default function AboutPage() {
         <motion.div
           {...fadeUp}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="mt-20 mb-24 flex flex-wrap gap-4 justify-center"
+          className="mt-28 mb-32 flex flex-wrap gap-4 justify-center"
         >
           <Link
             href="/case-studies"

@@ -53,7 +53,7 @@ const implementations = [
 
 function VideoCard({ project }: { project: typeof redesigns[0] }) {
   return (
-    <div className="bg-card rounded-2xl overflow-hidden border border-border hover:border-accent transition-colors">
+    <div className="bg-card rounded-2xl overflow-hidden border border-border hover:border-accent shadow-lg shadow-black/20 hover:shadow-xl hover:shadow-accent/5 transition-all duration-300">
       <div className="aspect-video">
         <iframe
           width="100%"
@@ -67,7 +67,7 @@ function VideoCard({ project }: { project: typeof redesigns[0] }) {
       </div>
       <div className="p-6 space-y-4">
         <div>
-          <span className="inline-block px-3 py-1 bg-accent/10 text-accent rounded-full text-sm mb-2">
+          <span className="inline-block px-3 py-1 bg-accent/10 text-accent rounded-full text-sm mb-3">
             {project.type}
           </span>
           <h4 className="text-xl font-bold">{project.title}</h4>
@@ -75,7 +75,7 @@ function VideoCard({ project }: { project: typeof redesigns[0] }) {
         <p className="text-foreground/70 text-sm leading-relaxed">
           {project.description}
         </p>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 pt-1">
           {project.tools.map((tool) => (
             <span
               key={tool}
@@ -92,13 +92,13 @@ function VideoCard({ project }: { project: typeof redesigns[0] }) {
 
 export default function AudioPage() {
   return (
-    <main className="min-h-screen pt-24">
+    <main className="min-h-screen w-full pt-24">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div {...fadeUp} className="text-center mb-16">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4">
+        <motion.div {...fadeUp} className="text-center mb-20">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
             Game Audio &amp; Interactive Sound
           </h1>
-          <div className="w-20 h-1 bg-accent mx-auto mb-6" />
+          <div className="w-20 h-1 bg-accent mx-auto mb-8" />
           <p className="text-lg text-muted-foreground max-w-xl mx-auto">
             I design and implement interactive audio systems using synthesis,
             sampling, and middleware like Wwise and FMOD.
@@ -109,9 +109,9 @@ export default function AudioPage() {
         <motion.section
           {...fadeUp}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="max-w-3xl mx-auto mb-20"
+          className="max-w-3xl mx-auto mb-24"
         >
-          <h2 className="text-2xl font-bold mb-4 gradient-text">The Story</h2>
+          <h2 className="text-2xl font-bold mb-6 gradient-text">The Story</h2>
           <div className="space-y-4 text-lg text-foreground/70 leading-relaxed">
             <p>
               For more than a decade, I produced electronic music under the name
@@ -134,13 +134,13 @@ export default function AudioPage() {
         <motion.section
           {...fadeUp}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mb-20"
+          className="mb-24"
         >
-          <div className="flex items-center gap-3 mb-8">
+          <div className="flex items-center gap-3 mb-4">
             <Volume2 className="w-7 h-7 text-accent" />
             <h2 className="text-2xl font-bold">Sound Redesigns</h2>
           </div>
-          <p className="text-foreground/60 mb-8 max-w-3xl">
+          <p className="text-foreground/60 mb-10 max-w-3xl">
             Complete audio redesigns of existing game and animation footage.
             stripping the original audio and rebuilding every layer from scratch.
           </p>
@@ -155,13 +155,13 @@ export default function AudioPage() {
         <motion.section
           {...fadeUp}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mb-20"
+          className="mb-24"
         >
-          <div className="flex items-center gap-3 mb-8">
+          <div className="flex items-center gap-3 mb-4">
             <Gamepad2 className="w-7 h-7 text-accent-secondary" />
             <h2 className="text-2xl font-bold">Audio Implementations</h2>
           </div>
-          <p className="text-foreground/60 mb-8 max-w-3xl">
+          <p className="text-foreground/60 mb-10 max-w-3xl">
             Game audio built from the ground up. Middleware integration, adaptive
             music systems, and physics-driven sound.
           </p>

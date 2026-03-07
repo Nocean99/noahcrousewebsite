@@ -127,7 +127,7 @@ function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
       transition={{ duration: 0.6, delay: index * 0.1 }}
       className="scroll-mt-24"
     >
-      <div className="bg-card border border-border rounded-2xl overflow-hidden">
+      <div className="bg-card border border-border rounded-2xl overflow-hidden shadow-lg shadow-black/20">
         {study.image && (
           <div className="relative aspect-video bg-muted">
             <Image
@@ -136,10 +136,11 @@ function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
               fill
               className="object-cover"
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-card/60 via-transparent to-transparent" />
           </div>
         )}
 
-        <div className="p-8 sm:p-10 space-y-8">
+        <div className="p-8 sm:p-12 space-y-10">
           <div>
             <p className="text-sm text-accent font-medium mb-2">{study.tagline}</p>
             <h2 className="text-3xl sm:text-4xl font-bold mb-3">{study.title}</h2>
@@ -235,17 +236,17 @@ function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
 
 export default function CaseStudiesPage() {
   return (
-    <main className="min-h-screen pt-24">
+    <main className="min-h-screen w-full pt-24">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div {...fadeUp} className="text-center mb-16">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4">Case Studies</h1>
-          <div className="w-20 h-1 bg-accent mx-auto mb-6" />
+        <motion.div {...fadeUp} className="text-center mb-20">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">Case Studies</h1>
+          <div className="w-20 h-1 bg-accent mx-auto mb-8" />
           <p className="text-lg text-muted-foreground max-w-xl mx-auto">
             Real projects with real stories. the what, the why, and the how behind each build.
           </p>
         </motion.div>
 
-        <div className="space-y-16 mb-24">
+        <div className="space-y-20 mb-32">
           {caseStudies.map((study, index) => (
             <CaseStudyCard key={study.id} study={study} index={index} />
           ))}

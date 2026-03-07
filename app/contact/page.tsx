@@ -38,13 +38,13 @@ const socialLinks = [
 
 export default function ContactPage() {
   return (
-    <main className="min-h-screen pt-24">
+    <main className="min-h-screen w-full pt-24">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div {...fadeUp} className="text-center mb-16">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4">
+        <motion.div {...fadeUp} className="text-center mb-20">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
             Work With Me
           </h1>
-          <div className="w-20 h-1 bg-accent mx-auto mb-6" />
+          <div className="w-20 h-1 bg-accent mx-auto mb-8" />
         </motion.div>
 
         <motion.div

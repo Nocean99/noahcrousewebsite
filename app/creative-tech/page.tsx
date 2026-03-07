@@ -63,13 +63,13 @@ const projectLinks = [
 
 export default function CreativeTechPage() {
   return (
-    <main className="min-h-screen pt-24">
+    <main className="min-h-screen w-full pt-24">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div {...fadeUp} className="text-center mb-16">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4">
+        <motion.div {...fadeUp} className="text-center mb-20">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
             Creative Technology
           </h1>
-          <div className="w-20 h-1 bg-accent mx-auto mb-6" />
+          <div className="w-20 h-1 bg-accent mx-auto mb-8" />
           <p className="text-lg text-muted-foreground max-w-xl mx-auto">
             Where creativity and code make music together.
           </p>
@@ -79,16 +79,16 @@ export default function CreativeTechPage() {
         <motion.section
           {...fadeUp}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="mb-20"
+          className="mb-24"
         >
-          <h2 className="text-2xl font-bold mb-8 gradient-text">What I Work With</h2>
-          <div className="grid sm:grid-cols-2 gap-6">
+          <h2 className="text-2xl font-bold mb-10 gradient-text">What I Work With</h2>
+          <div className="grid sm:grid-cols-2 gap-8">
             {skillAreas.map((area) => (
               <div
                 key={area.category}
-                className="bg-card p-6 rounded-xl border border-border"
+                className="bg-card p-6 rounded-xl border border-border shadow-md shadow-black/10 hover:border-accent/40 transition-colors"
               >
-                <h3 className="font-semibold mb-3 text-foreground/90">{area.category}</h3>
+                <h3 className="font-semibold mb-4 text-foreground/90">{area.category}</h3>
                 <div className="flex flex-wrap gap-2">
                   {area.skills.map((skill) => (
                     <span
@@ -108,9 +108,9 @@ export default function CreativeTechPage() {
         <motion.section
           {...fadeUp}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mb-20"
+          className="mb-24"
         >
-          <h2 className="text-2xl font-bold mb-8 gradient-text">Browse by Type</h2>
+          <h2 className="text-2xl font-bold mb-10 gradient-text">Browse by Type</h2>
           <div className="grid sm:grid-cols-2 gap-4">
             {projectLinks.map((link) => (
               <Link
@@ -131,12 +131,12 @@ export default function CreativeTechPage() {
         <motion.section
           {...fadeUp}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mb-24"
+          className="mb-32"
         >
-          <h2 className="text-2xl font-bold mb-4 gradient-text">
+          <h2 className="text-2xl font-bold mb-6 gradient-text">
             What I&apos;m Exploring Now
           </h2>
-          <p className="text-lg text-foreground/70 leading-relaxed mb-8">
+          <p className="text-lg text-foreground/70 leading-relaxed mb-10">
             I&apos;m always experimenting at the edges of what I know. These are the
             spaces I&apos;m digging into right now. Not finished products, but active
             curiosities.
@@ -145,9 +145,9 @@ export default function CreativeTechPage() {
             {explorations.map((item) => (
               <div
                 key={item.title}
-                className="bg-card p-6 rounded-xl border border-border"
+                className="bg-card p-6 rounded-xl border border-border shadow-md shadow-black/10"
               >
-                <h3 className="font-semibold mb-2">{item.title}</h3>
+                <h3 className="font-semibold mb-3">{item.title}</h3>
                 <p className="text-foreground/70 leading-relaxed mb-3">
                   {item.description}
                 </p>
