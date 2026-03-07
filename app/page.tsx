@@ -24,7 +24,7 @@ export default function Home() {
             , a nutrition tracker that somehow understands chaotic food descriptions.
           </p>
           <p>
-            Now I build in the space where creativity and coding make music together —
+            Now I build in the space where creativity and coding make music together.
             where apps have personality, tools feel human, and technology gets to be
             a little playful.
           </p>

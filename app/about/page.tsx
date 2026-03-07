@@ -44,13 +44,13 @@ export default function AboutPage() {
               <p>
                 I&apos;m a multidisciplinary developer and audio designer with a passion
                 for creating immersive digital experiences. I like making technology feel
-                a little more human — responsive, expressive, and just unpredictable
+                a little more human. Responsive, expressive, and just unpredictable
                 enough to stay interesting.
               </p>
               <p>
                 With over a decade of music production experience, I evolved from crafting
                 sonic landscapes to building interactive applications that combine technology,
-                design, and user experience. The transition felt natural — both worlds are
+                design, and user experience. The transition felt natural. Both worlds are
                 about shaping raw material into something people feel.
               </p>
             </div>
@@ -75,7 +75,7 @@ export default function AboutPage() {
               </p>
               <p>
                 The common thread: everything I make has personality. I don&apos;t build
-                tools that feel like tools — I build things that feel like they were made
+                tools that feel like tools. I build things that feel like they were made
                 by a human who cares.
               </p>
             </div>
@@ -102,7 +102,7 @@ export default function AboutPage() {
               <p>
                 The intersection of technology, creativity, and experience. I&apos;m
                 fascinated by the moment when a tool stops feeling like software and starts
-                feeling like a collaborator — when an AI coach actually motivates you, when
+                feeling like a collaborator. When an AI coach actually motivates you, when
                 a game sound makes you flinch, when an interface anticipates what you need.
               </p>
               <p>

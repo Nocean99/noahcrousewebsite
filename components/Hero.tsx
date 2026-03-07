@@ -62,12 +62,12 @@ export default function Hero() {
           className="text-base sm:text-lg text-foreground/60 max-w-2xl mx-auto mb-12 leading-relaxed"
         >
           <p>
-            I&apos;m Noah — a creative technologist who builds AI-powered apps,
+            I&apos;m Noah, a creative technologist who builds AI-powered apps,
             interactive tools, and the occasional digital experiment that probably
             shouldn&apos;t work but somehow does.
           </p>
           <p className="mt-4">
-            I like making technology feel a little more human — responsive, expressive,
+            I like making technology feel a little more human. Responsive, expressive,
             and just unpredictable enough to stay interesting.
           </p>
         </motion.div>

@@ -138,7 +138,7 @@ export default function CreativeTechPage() {
           </h2>
           <p className="text-lg text-foreground/70 leading-relaxed mb-8">
             I&apos;m always experimenting at the edges of what I know. These are the
-            spaces I&apos;m digging into right now — not finished products, but active
+            spaces I&apos;m digging into right now. Not finished products, but active
             curiosities.
           </p>
           <div className="space-y-6">
