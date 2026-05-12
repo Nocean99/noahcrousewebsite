@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
+import { ArrowRight, Sparkles } from 'lucide-react';
+import HeroScene from './three/HeroSceneClient';
 
 const featuredProjects = [
   {
@@ -10,131 +12,177 @@ const featuredProjects = [
     description: 'A conversational AI fitness tracker with suspiciously high enthusiasm.',
     image: '/gymbro.PNG',
     href: '/case-studies#ai-gym-bro',
+    tag: 'AI · Mobile',
   },
   {
     title: 'DietPalAI',
     description: 'A nutrition tracker that somehow understands chaotic food descriptions.',
     image: '/diet pal .png',
     href: '/case-studies#dietpalai',
+    tag: 'AI · Web',
   },
   {
     title: 'Snowball Runner',
     description: 'An endless downhill game with dynamic physics and procedural chaos.',
     image: '/snowball game.png',
     href: '/case-studies#snowball-runner',
+    tag: 'Unity · Game',
   },
 ];
 
+const ease = [0.22, 1, 0.36, 1] as const;
+
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden">
-      <div className="absolute inset-0 gradient-bg opacity-10" />
+    <section className="relative isolate overflow-hidden">
+      {/* 3D Background scene */}
+      <div className="absolute inset-0 -z-10 opacity-90">
+        <HeroScene />
+      </div>
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-background/40 to-background pointer-events-none" />
 
-      <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-36 pb-24">
+      {/* Decorative blobs */}
+      <div className="blob -z-10" style={{ background: '#00e7ff', width: 420, height: 420, top: '8%', left: '-8%' }} />
+      <div className="blob -z-10" style={{ background: '#ff3df0', width: 380, height: 380, top: '30%', right: '-6%', animationDelay: '4s' }} />
+
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-40 pb-20 sm:pt-48 sm:pb-28">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.7, ease }}
+          className="flex justify-center mb-8"
         >
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6">
-            Noah Crouse
-          </h1>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-light gradient-text mb-8">
-            Creative Technologist
-          </h2>
+          <span className="chip">
+            <Sparkles className="w-3.5 h-3.5" />
+            Available for new work
+          </span>
         </motion.div>
+
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease, delay: 0.05 }}
+          className="text-center font-display font-bold tracking-tight text-[clamp(3rem,8vw,7rem)] leading-[0.95]"
+        >
+          <span className="block">Noah Crouse</span>
+          <span className="block gradient-text mt-2">Creative Technologist</span>
+        </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-lg sm:text-xl text-foreground/80 max-w-2xl mx-auto mb-10 leading-relaxed"
+          transition={{ duration: 0.8, ease, delay: 0.2 }}
+          className="mt-8 mx-auto max-w-2xl text-center text-lg sm:text-xl text-foreground/75 leading-relaxed"
         >
-          Creative technologist blending AI, code, and a past life in electronic music.
-          Building AI-powered mobile apps and interactive experiences that feel intuitive,
-          purposeful, and human.
+          I build AI-powered apps, interactive tools, and the occasional digital experiment
+          that probably shouldn&apos;t work but somehow does. Code that has a pulse.
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.35 }}
-          className="text-base sm:text-lg text-foreground/60 max-w-2xl mx-auto mb-16 leading-relaxed"
+          transition={{ duration: 0.8, ease, delay: 0.35 }}
+          className="mt-12 flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
-          <p>
-            I&apos;m Noah, a creative technologist who builds AI-powered apps,
-            interactive tools, and the occasional digital experiment that probably
-            shouldn&apos;t work but somehow does.
-          </p>
-          <p className="mt-4">
-            I like making technology feel a little more human. Responsive, expressive,
-            and just unpredictable enough to stay interesting.
-          </p>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-24"
-        >
-          <Link
-            href="/case-studies"
-            className="px-8 py-4 bg-accent text-white rounded-lg font-medium hover:scale-105 transition-transform shadow-lg hover:shadow-xl"
-          >
+          <Link href="/case-studies" className="btn-neon">
             View Case Studies
+            <ArrowRight className="w-4 h-4" />
           </Link>
-          <Link
-            href="/contact"
-            className="px-8 py-4 bg-transparent border-2 border-accent text-accent rounded-lg font-medium hover:bg-accent hover:text-white transition-all"
-          >
+          <Link href="/contact" className="btn-ghost">
             Work With Me
           </Link>
         </motion.div>
 
-        {/* Featured Projects */}
+        {/* Live status bar */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.65 }}
-          className="mb-16"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.6 }}
+          className="mt-20 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 font-mono text-xs uppercase tracking-widest text-muted-foreground"
         >
-          <h3 className="text-sm uppercase tracking-widest text-muted-foreground mb-10">
-            Featured Work
-          </h3>
-          <div className="grid sm:grid-cols-3 gap-8">
-            {featuredProjects.map((project) => (
+          <span className="inline-flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-neon-cyan shadow-[0_0_10px_var(--neon-cyan)]" />
+            Flutter · React · Python
+          </span>
+          <span className="hidden sm:inline">·</span>
+          <span className="inline-flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-neon-magenta shadow-[0_0_10px_var(--neon-magenta)]" />
+            Unity · Wwise · FMOD
+          </span>
+          <span className="hidden sm:inline">·</span>
+          <span className="inline-flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-neon-violet shadow-[0_0_10px_var(--neon-violet)]" />
+            GPT · TensorFlow · OpenAI
+          </span>
+        </motion.div>
+      </div>
+
+      {/* Featured projects grid */}
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.6, ease }}
+          className="mb-10 flex items-end justify-between flex-wrap gap-4"
+        >
+          <div>
+            <p className="font-mono text-xs uppercase tracking-widest text-neon-cyan mb-2">
+              Featured Work / 003
+            </p>
+            <h3 className="font-display text-3xl sm:text-4xl font-bold">
+              Selected experiments
+            </h3>
+          </div>
+          <Link
+            href="/case-studies"
+            className="group inline-flex items-center gap-2 text-foreground/70 hover:text-neon-cyan transition-colors font-display"
+          >
+            See all case studies
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </Link>
+        </motion.div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {featuredProjects.map((project, i) => (
+            <motion.div
+              key={project.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.6, delay: i * 0.1, ease }}
+            >
               <Link
-                key={project.title}
                 href={project.href}
-                className="group bg-card border border-border rounded-2xl overflow-hidden hover:border-accent hover:shadow-xl hover:shadow-accent/5 transition-all duration-300"
+                className="neon-card group block overflow-hidden h-full"
               >
-                <div className="relative aspect-video bg-muted overflow-hidden">
+                <div className="relative aspect-[4/3] overflow-hidden">
                   <Image
                     src={project.image}
                     alt={project.title}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
+                  <span className="absolute top-3 left-3 chip text-[10px]">{project.tag}</span>
                 </div>
-                <div className="p-5 text-left">
-                  <h4 className="font-semibold text-lg mb-2 group-hover:text-accent transition-colors">
+                <div className="p-5">
+                  <h4 className="font-display text-xl font-bold mb-2 group-hover:text-neon-cyan transition-colors">
                     {project.title}
                   </h4>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-4">
                     {project.description}
                   </p>
-                  <span className="inline-block mt-4 text-xs text-accent font-medium tracking-wide uppercase">
-                    View case study &rarr;
+                  <span className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-widest text-neon-magenta">
+                    Case study
+                    <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                   </span>
                 </div>
               </Link>
-            ))}
-          </div>
-        </motion.div>
+            </motion.div>
+          ))}
+        </div>
       </div>
-
     </section>
   );
 }

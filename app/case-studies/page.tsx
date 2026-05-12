@@ -2,12 +2,15 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import Link from 'next/link';
 import Footer from '@/components/Footer';
+import OrbitalScene from '@/components/three/OrbitalSceneClient';
+import { FolderGit2, ArrowUpRight, Sparkles } from 'lucide-react';
 
+const ease = [0.22, 1, 0.36, 1] as const;
 const fadeUp = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
+  initial: { opacity: 0, y: 30 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: '-80px' },
 };
 
 interface CaseStudy {
@@ -34,25 +37,23 @@ const caseStudies: CaseStudy[] = [
     tagline: 'Your AI Fitness Companion',
     image: '/gymbro.PNG',
     opening:
-      'AI Gym Bro represents the kind of work I love: blending AI, UX, personality, and mobile development to create experiences that feel human and useful. It\'s not just a fitness tracker. it\'s a coach who knows your abilities, a cheerleader who has your back, a personal trainer who reminds you that it\'s leg day, no matter how much you want to skip. And it\'s an example of how AI can make everyday tasks more fun and individualized.',
+      "AI Gym Bro represents the kind of work I love: blending AI, UX, personality, and mobile development to create experiences that feel human and useful. It's a coach who knows your abilities, a cheerleader who has your back, a personal trainer who reminds you that it's leg day no matter how much you want to skip.",
     whatItDoes:
       'A conversational AI fitness tracker where users log workouts by chatting with an enthusiastic "gym bro" personality. It uses GPT-4o-mini to parse natural language into structured workout data, track personal records, and provide motivational feedback.',
     whyIBuiltIt:
-      'Every fitness app I tried felt like a spreadsheet. I wanted something that felt like texting a friend who happens to be really into lifting. Something that would remember my PRs, call me out when I skip legs, and actually make logging a workout feel fun instead of like homework.',
+      'Every fitness app I tried felt like a spreadsheet. I wanted something that felt like texting a friend who happens to be really into lifting. Something that would remember my PRs, call me out when I skip legs, and actually make logging a workout feel fun.',
     creativeProcess:
-      'I started by thinking about the voice. Before writing any code, I wrote sample conversations. what would this AI say when you hit a new PR? What about when you log a half-hearted workout? The personality came first, and the architecture followed. I wanted every interaction to feel like it came from someone who genuinely cares about your progress.',
+      'I started by thinking about the voice. Before writing any code, I wrote sample conversations. what would this AI say when you hit a new PR? What about when you log a half-hearted workout? The personality came first, the architecture followed.',
     technicalDecisions:
-      'Flutter for cross-platform mobile, Python Flask for the backend API, PostgreSQL for structured workout data, and OpenAI\'s API for the conversational layer. I chose Flask for its simplicity. this app needed to be fast to iterate on, not over-engineered.',
+      "Flutter for cross-platform mobile, Python Flask for the backend API, PostgreSQL for structured workout data, and OpenAI's API for the conversational layer. Flask for its simplicity. this app needed to be fast to iterate on, not over-engineered.",
     aiIntegration:
       'The AI layer does more than chat. It parses messy natural language ("did 3 sets of bench, 185 for 8 reps, then dropped to 135") into structured data, detects personal records automatically, and adapts its motivational tone based on workout patterns.',
     howItWorks:
-      'Users type their workouts in natural language. The AI parses the input, extracts exercises/sets/reps/weight, stores it in PostgreSQL, checks for PRs, and responds with personality. The backend handles all the data logic while the AI handles the conversation.',
+      'Users type workouts in natural language. The AI parses input, extracts exercises/sets/reps/weight, stores it in PostgreSQL, checks for PRs, and responds with personality.',
     whatILearned:
-      'Personality is a feature, not a gimmick. Users kept coming back not because the tracking was better than competitors, but because the experience was more enjoyable. I also learned a lot about prompt engineering. getting an AI to be consistently encouraging without being annoying is harder than it sounds.',
+      'Personality is a feature, not a gimmick. Users kept coming back not because tracking was better than competitors, but because the experience was more enjoyable. Prompt engineering: getting an AI to be consistently encouraging without being annoying is harder than it sounds.',
     techStack: ['Flutter', 'Python Flask', 'PostgreSQL', 'OpenAI API', 'Render'],
-    links: [
-      { label: 'GitHub', href: 'https://github.com/nocean99/ai-gym-bro' },
-    ],
+    links: [{ label: 'GitHub', href: 'https://github.com/nocean99/ai-gym-bro' }],
   },
   {
     id: 'dietpalai',
@@ -62,60 +63,54 @@ const caseStudies: CaseStudy[] = [
     opening:
       'DietPalAI is what happens when you ask "what if a nutrition tracker actually understood how people talk about food?" Instead of searching databases for exact ingredients, you just describe what you ate. however chaotically. and the AI figures it out.',
     whatItDoes:
-      'A nutrition tracking app that uses AI to parse natural language meal descriptions and automatically calculate calories and macros. Designed for both web and mobile to make healthy eating effortless.',
+      'A nutrition tracking app that uses AI to parse natural language meal descriptions and automatically calculate calories and macros.',
     whyIBuiltIt:
-      'Logging food is tedious. Most nutrition apps make you search through databases, weigh portions, and manually enter every ingredient. I wanted to just type "had a big bowl of pasta with chicken and some bread on the side" and have it figure out the rest.',
+      'Logging food is tedious. Most nutrition apps make you search through databases, weigh portions, and manually enter every ingredient. I wanted to just type "had a big bowl of pasta with chicken and some bread" and have it figure out the rest.',
     creativeProcess:
-      'I focused on reducing friction to zero. The entire UX is built around one input: tell me what you ate. No dropdowns, no searches, no portion size selectors. Just language. The AI handles the ambiguity, and the interface stays clean.',
+      'I focused on reducing friction to zero. The entire UX is built around one input: tell me what you ate. No dropdowns, no searches, no portion size selectors. The AI handles the ambiguity, and the interface stays clean.',
     technicalDecisions:
-      'React for the web interface, Flutter for mobile, serverless functions for the backend to keep costs low, and OpenAI for the natural language parsing. Deployed on Netlify for instant scaling.',
+      'React for the web, Flutter for mobile, serverless functions to keep costs low, OpenAI for parsing. Deployed on Netlify for instant scaling.',
     aiIntegration:
-      'The AI parses freeform meal descriptions into structured nutritional data. calories, protein, carbs, fat. It handles vague quantities ("a big bowl"), combined meals ("chicken stir fry with rice"), and even corrects common food description quirks.',
+      'The AI parses freeform meal descriptions into structured nutritional data. It handles vague quantities, combined meals, and corrects common food description quirks.',
     howItWorks:
-      'Type what you ate in plain English. The AI breaks it into components, estimates portions, calculates macros, and logs it. You get a daily dashboard showing your intake with trends over time.',
+      'Type what you ate in plain English. The AI breaks it into components, estimates portions, calculates macros, logs it. Daily dashboard with trends over time.',
     whatILearned:
-      'Reducing friction is everything. The difference between "log your food in 5 taps" and "log your food in 1 sentence" is the difference between an app people use and an app people abandon. Also learned about handling AI uncertainty gracefully. sometimes the AI guesses wrong, and the UX needs to make corrections easy.',
+      'Reducing friction is everything. The difference between "log your food in 5 taps" and "log your food in 1 sentence" is the difference between an app people use and one people abandon.',
     techStack: ['React', 'Flutter', 'Serverless Functions', 'OpenAI API', 'Netlify'],
-    links: [
-      { label: 'GitHub', href: 'https://github.com/nocean99/dietpalai' },
-    ],
+    links: [{ label: 'GitHub', href: 'https://github.com/nocean99/dietpalai' }],
   },
   {
     id: 'snowball-runner',
     title: 'Snowball Runner',
     tagline: 'Endless Downhill Mayhem',
     image: '/snowball game.png',
-    whatItDoes:
-      'An addictive endless runner where players guide a snowball down a procedurally generated mountain slope. The snowball dynamically grows with speed and shrinks on collision, creating a unique risk-reward gameplay loop.',
     opening: '',
+    whatItDoes:
+      'An addictive endless runner where players guide a snowball down a procedurally generated mountain slope. The snowball dynamically grows with speed and shrinks on collision.',
     whyIBuiltIt:
-      'I wanted to explore procedural generation and dynamic physics in Unity. The concept was simple enough to scope tightly but had enough depth to experiment with. how does the snowball\'s changing size affect the feel? When does growing feel powerful vs. dangerous?',
+      'I wanted to explore procedural generation and dynamic physics in Unity. The concept was simple enough to scope tightly but had enough depth to experiment with.',
     howItWorks:
-      'The mountain terrain generates procedurally as you descend. Obstacles (trees, skiers) spawn with increasing density. The snowball\'s size is tied to velocity. go fast and you grow, hit something and you shrink. Score scales with distance and speed.',
+      "The mountain terrain generates procedurally as you descend. Obstacles spawn with increasing density. The snowball's size is tied to velocity. Score scales with distance and speed.",
     whatILearned:
-      'Game feel is everything. Tiny tweaks to the physics. how fast the ball grows, how much it shrinks on impact, the camera shake on collision. made the difference between "meh" and "one more run." Also got comfortable with Unity\'s physics system and procedural content generation.',
+      'Game feel is everything. Tiny tweaks to the physics made the difference between "meh" and "one more run." Also got comfortable with Unity\'s physics system and procedural content generation.',
     techStack: ['Unity', 'C#', 'Unity Physics'],
-    links: [
-      { label: 'GitHub', href: 'https://github.com/nocean99/snowball-runner' },
-    ],
+    links: [{ label: 'GitHub', href: 'https://github.com/nocean99/snowball-runner' }],
   },
   {
     id: 'ai-image-detector',
     title: 'AI Image Detector',
     tagline: 'Detect AI-Generated Content',
-    whatItDoes:
-      'A machine learning application that analyzes and identifies AI-generated images with high accuracy, helping users distinguish between authentic and AI-created visual content.',
     opening: '',
+    whatItDoes:
+      'A machine learning application that analyzes and identifies AI-generated images with high accuracy.',
     whyIBuiltIt:
-      'With AI-generated images becoming indistinguishable from real photos, I wanted to explore the other side of the equation. can AI detect its own creations? It was a chance to dig into computer vision and understand what makes generated images subtly different.',
+      'With AI-generated images becoming indistinguishable from real photos, I wanted to explore the other side of the equation. can AI detect its own creations? A chance to dig into computer vision.',
     howItWorks:
-      'Upload an image and the model analyzes it using a trained TensorFlow classifier. It looks for patterns common in AI-generated images. subtle artifacts, frequency domain anomalies, and texture inconsistencies. and returns a confidence score.',
+      'Upload an image and the model analyzes it using a trained TensorFlow classifier. Looks for patterns common in AI-generated images. subtle artifacts, frequency domain anomalies, and texture inconsistencies.',
     whatILearned:
-      'Working with image classification deepened my understanding of neural networks and data preprocessing. The biggest challenge was building a balanced training dataset. the model is only as good as the examples it learns from.',
+      'Working with image classification deepened my understanding of neural networks and data preprocessing. The biggest challenge: building a balanced training dataset.',
     techStack: ['Python', 'TensorFlow', 'OpenCV', 'Flask', 'React'],
-    links: [
-      { label: 'GitHub', href: 'https://github.com/nocean99/ai-image-detector' },
-    ],
+    links: [{ label: 'GitHub', href: 'https://github.com/nocean99/ai-image-detector' }],
   },
 ];
 
@@ -123,42 +118,51 @@ function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
   return (
     <motion.article
       id={study.id}
-      {...fadeUp}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="scroll-mt-24"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-100px' }}
+      transition={{ duration: 0.7, delay: index * 0.05, ease }}
+      className="scroll-mt-28"
     >
-      <div className="bg-card border border-border rounded-2xl overflow-hidden shadow-lg shadow-black/20">
+      <div className="neon-card overflow-hidden">
         {study.image && (
-          <div className="relative aspect-video bg-muted">
-            <Image
-              src={study.image}
-              alt={study.title}
-              fill
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-card/60 via-transparent to-transparent" />
+          <div className="relative aspect-video overflow-hidden">
+            <Image src={study.image} alt={study.title} fill className="object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/30 to-transparent" />
+            <div className="absolute bottom-4 left-6 right-6 flex items-end justify-between">
+              <div>
+                <span className="chip mb-2">{study.tagline}</span>
+                <h2 className="font-display text-3xl sm:text-4xl font-bold gradient-text">{study.title}</h2>
+              </div>
+              <span className="font-mono text-xs uppercase tracking-widest text-foreground/60">
+                Case / 00{index + 1}
+              </span>
+            </div>
           </div>
         )}
 
         <div className="p-8 sm:p-12 space-y-10">
-          <div>
-            <p className="text-sm text-accent font-medium mb-2">{study.tagline}</p>
-            <h2 className="text-3xl sm:text-4xl font-bold mb-3">{study.title}</h2>
-            {study.opening && (
-              <p className="text-foreground/60 text-lg leading-relaxed italic">
-                {study.opening}
-              </p>
-            )}
-          </div>
+          {!study.image && (
+            <div>
+              <span className="chip mb-3">{study.tagline}</span>
+              <h2 className="font-display text-3xl sm:text-4xl font-bold gradient-text">{study.title}</h2>
+            </div>
+          )}
+
+          {study.opening && (
+            <p className="text-foreground/70 text-lg leading-relaxed italic border-l-2 border-neon-cyan/50 pl-5">
+              {study.opening}
+            </p>
+          )}
 
           <div className="grid sm:grid-cols-2 gap-8">
             <div>
-              <h3 className="text-lg font-semibold mb-2 text-foreground/90">What it does</h3>
-              <p className="text-foreground/70 leading-relaxed">{study.whatItDoes}</p>
+              <h3 className="font-mono text-xs uppercase tracking-widest text-neon-cyan mb-3">What it does</h3>
+              <p className="text-foreground/75 leading-relaxed">{study.whatItDoes}</p>
             </div>
             <div>
-              <h3 className="text-lg font-semibold mb-2 text-foreground/90">Why I built this</h3>
-              <p className="text-foreground/70 leading-relaxed">{study.whyIBuiltIt}</p>
+              <h3 className="font-mono text-xs uppercase tracking-widest text-neon-magenta mb-3">Why I built this</h3>
+              <p className="text-foreground/75 leading-relaxed">{study.whyIBuiltIt}</p>
             </div>
           </div>
 
@@ -166,14 +170,14 @@ function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
             <div className="grid sm:grid-cols-2 gap-8">
               {study.creativeProcess && (
                 <div>
-                  <h3 className="text-lg font-semibold mb-2 text-foreground/90">Creative process</h3>
-                  <p className="text-foreground/70 leading-relaxed">{study.creativeProcess}</p>
+                  <h3 className="font-mono text-xs uppercase tracking-widest text-neon-cyan mb-3">Creative process</h3>
+                  <p className="text-foreground/75 leading-relaxed">{study.creativeProcess}</p>
                 </div>
               )}
               {study.technicalDecisions && (
                 <div>
-                  <h3 className="text-lg font-semibold mb-2 text-foreground/90">Technical decisions</h3>
-                  <p className="text-foreground/70 leading-relaxed">{study.technicalDecisions}</p>
+                  <h3 className="font-mono text-xs uppercase tracking-widest text-neon-magenta mb-3">Technical decisions</h3>
+                  <p className="text-foreground/75 leading-relaxed">{study.technicalDecisions}</p>
                 </div>
               )}
             </div>
@@ -181,31 +185,29 @@ function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
 
           {study.aiIntegration && (
             <div>
-              <h3 className="text-lg font-semibold mb-2 text-foreground/90">AI integration</h3>
-              <p className="text-foreground/70 leading-relaxed">{study.aiIntegration}</p>
+              <h3 className="font-mono text-xs uppercase tracking-widest text-neon-violet mb-3">AI integration</h3>
+              <p className="text-foreground/75 leading-relaxed">{study.aiIntegration}</p>
             </div>
           )}
 
           <div className="grid sm:grid-cols-2 gap-8">
             <div>
-              <h3 className="text-lg font-semibold mb-2 text-foreground/90">How it works</h3>
-              <p className="text-foreground/70 leading-relaxed">{study.howItWorks}</p>
+              <h3 className="font-mono text-xs uppercase tracking-widest text-neon-cyan mb-3">How it works</h3>
+              <p className="text-foreground/75 leading-relaxed">{study.howItWorks}</p>
             </div>
             <div>
-              <h3 className="text-lg font-semibold mb-2 text-foreground/90">What I learned</h3>
-              <p className="text-foreground/70 leading-relaxed">{study.whatILearned}</p>
+              <h3 className="font-mono text-xs uppercase tracking-widest text-neon-magenta mb-3">What I learned</h3>
+              <p className="text-foreground/75 leading-relaxed">{study.whatILearned}</p>
             </div>
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold mb-3 text-foreground/60 uppercase tracking-wider">
-              Built with
-            </h3>
+            <h3 className="font-mono text-xs uppercase tracking-widest text-foreground/60 mb-3">Built with</h3>
             <div className="flex flex-wrap gap-2">
               {study.techStack.map((tech) => (
                 <span
                   key={tech}
-                  className="px-3 py-1 bg-muted text-foreground/70 rounded-full text-sm border border-border"
+                  className="px-2.5 py-1 text-xs font-mono uppercase tracking-wider rounded-full border border-white/10 bg-white/[0.03] text-foreground/70"
                 >
                   {tech}
                 </span>
@@ -221,9 +223,10 @@ function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-5 py-2 bg-muted border border-border rounded-lg text-sm font-medium hover:border-accent transition-colors"
+                  className="btn-ghost text-sm py-2.5 px-5"
                 >
-                  {link.label} &rarr;
+                  {link.label}
+                  <ArrowUpRight className="w-4 h-4" />
                 </a>
               ))}
             </div>
@@ -236,22 +239,69 @@ function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
 
 export default function CaseStudiesPage() {
   return (
-    <main className="min-h-screen w-full pt-24">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div {...fadeUp} className="text-center mb-20">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">Case Studies</h1>
-          <div className="w-20 h-1 bg-accent mx-auto mb-8" />
-          <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-            Real projects with real stories. the what, the why, and the how behind each build.
-          </p>
-        </motion.div>
+    <main className="min-h-screen w-full pt-32 pb-20">
+      {/* Hero */}
+      <section className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+        <div className="blob" style={{ background: '#00e7ff', width: 380, height: 380, top: '-10%', left: '-12%' }} />
+        <div className="blob" style={{ background: '#ff3df0', width: 340, height: 340, top: '30%', right: '-10%', animationDelay: '3s' }} />
 
-        <div className="space-y-20 mb-32">
-          {caseStudies.map((study, index) => (
-            <CaseStudyCard key={study.id} study={study} index={index} />
-          ))}
+        <div className="grid lg:grid-cols-12 gap-12 items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease }}
+            className="lg:col-span-7"
+          >
+            <span className="chip mb-6">
+              <FolderGit2 className="w-3.5 h-3.5" />
+              Work / Case Studies
+            </span>
+            <h1 className="font-display text-5xl sm:text-6xl md:text-7xl font-bold leading-[0.95] mb-6">
+              Real projects, <span className="gradient-text">real stories</span>.
+            </h1>
+            <p className="text-xl text-foreground/75 max-w-xl leading-relaxed">
+              The what, the why, and the how behind each build. Process notes, technical decisions,
+              and what I&apos;d do differently next time.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease, delay: 0.2 }}
+            className="lg:col-span-5 relative aspect-square max-w-md mx-auto w-full"
+          >
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-neon-cyan/30 to-neon-magenta/30 blur-3xl" />
+            <OrbitalScene shape="knot" primary="#00e7ff" secondary="#ff3df0" />
+          </motion.div>
         </div>
+      </section>
+
+      <div className="divider-neon max-w-6xl mx-auto mb-20" />
+
+      {/* Case studies list */}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 mb-24">
+        {caseStudies.map((study, index) => (
+          <CaseStudyCard key={study.id} study={study} index={index} />
+        ))}
       </div>
+
+      {/* Closing CTA */}
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div {...fadeUp} transition={{ duration: 0.7, ease }} className="glass-strong rounded-3xl p-10 sm:p-14 text-center">
+          <Sparkles className="w-8 h-8 text-neon-cyan mx-auto mb-6" />
+          <h2 className="font-display text-3xl sm:text-4xl font-bold mb-4">
+            More on <span className="gradient-text">GitHub</span>.
+          </h2>
+          <p className="text-foreground/75 mb-8 max-w-lg mx-auto">
+            Side projects, experiments, and half-finished ideas live there too.
+          </p>
+          <a href="https://github.com/nocean99" target="_blank" rel="noopener noreferrer" className="btn-neon">
+            Visit GitHub
+            <ArrowUpRight className="w-4 h-4" />
+          </a>
+        </motion.div>
+      </section>
 
       <Footer />
     </main>
