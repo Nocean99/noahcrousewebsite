@@ -1,78 +1,104 @@
 'use client';
 
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Float, Sparkles, Environment } from '@react-three/drei';
-import { useRef, Suspense } from 'react';
+import { useRef, useMemo, Suspense } from 'react';
 import * as THREE from 'three';
 
-function IridescentOrb() {
-  const outerRef = useRef<THREE.Mesh>(null);
-  const smooth = useRef({ x: 0, y: 0 });
-
-  useFrame(({ clock, mouse }) => {
-    if (!outerRef.current) return;
-    const t = clock.getElapsedTime();
-    // Very soft mouse lerp — barely reacts, just feels alive
-    smooth.current.x += (mouse.x - smooth.current.x) * 0.018;
-    smooth.current.y += (mouse.y - smooth.current.y) * 0.018;
-    outerRef.current.rotation.y = smooth.current.x * 0.45 + t * 0.035;
-    outerRef.current.rotation.x = smooth.current.y * 0.25 + Math.sin(t * 0.12) * 0.04;
-  });
-
-  return (
-    <Float speed={0.5} rotationIntensity={0.06} floatIntensity={0.3}>
-      {/* Glass orb */}
-      <mesh ref={outerRef}>
-        <sphereGeometry args={[1.85, 72, 72]} />
-        <meshPhysicalMaterial
-          transmission={0.94}
-          thickness={2.8}
-          roughness={0.04}
-          metalness={0}
-          iridescence={1}
-          iridescenceIOR={2.1}
-          iridescenceThicknessRange={[80, 1200]}
-          color="#cce8ff"
-          envMapIntensity={2.4}
-          clearcoat={1}
-          clearcoatRoughness={0.05}
-        />
-      </mesh>
-      {/* Soft inner glow the glass refracts */}
-      <mesh scale={0.5}>
-        <sphereGeometry args={[1, 16, 16]} />
-        <meshBasicMaterial color="#90c0ff" transparent opacity={0.35} />
-      </mesh>
-    </Float>
-  );
+function seededRand(seed: number) {
+  let s = seed;
+  return () => {
+    s |= 0;
+    s = (s + 0x6d2b79f5) | 0;
+    let t = Math.imul(s ^ (s >>> 15), 1 | s);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
 }
 
-function Ring({ radius, tube, tiltX, tiltZ, speedX, speedZ }: {
-  radius: number; tube: number; tiltX: number; tiltZ: number; speedX: number; speedZ: number;
-}) {
-  const ref = useRef<THREE.Mesh>(null);
-  useFrame(({ clock }) => {
+const COUNT = 480;
+
+function ParticleNebula() {
+  const ref = useRef<THREE.Points>(null);
+  const mouse = useRef({ x: 0, y: 0 });
+
+  const { positions, colors, origPositions, phases } = useMemo(() => {
+    const rand = seededRand(0xc0ffee42);
+    const positions = new Float32Array(COUNT * 3);
+    const colors = new Float32Array(COUNT * 3);
+    const origPositions = new Float32Array(COUNT * 3);
+    const phases = new Float32Array(COUNT * 3);
+
+    const cyan = new THREE.Color('#00e7ff');
+    const violet = new THREE.Color('#8a5cff');
+    const magenta = new THREE.Color('#ff3df0');
+
+    for (let i = 0; i < COUNT; i++) {
+      const theta = rand() * Math.PI * 2;
+      const phi = Math.acos(2 * rand() - 1);
+      const r = 1.4 + rand() * 2.0;
+
+      const x = r * Math.sin(phi) * Math.cos(theta);
+      const y = r * Math.sin(phi) * Math.sin(theta) * 0.7;
+      const z = r * Math.cos(phi) * 0.55;
+
+      positions[i * 3] = x;
+      positions[i * 3 + 1] = y;
+      positions[i * 3 + 2] = z;
+      origPositions[i * 3] = x;
+      origPositions[i * 3 + 1] = y;
+      origPositions[i * 3 + 2] = z;
+
+      phases[i * 3] = rand() * Math.PI * 2;
+      phases[i * 3 + 1] = rand() * Math.PI * 2;
+      phases[i * 3 + 2] = rand() * Math.PI * 2;
+
+      // Color gradient: cyan → violet → magenta by angle
+      const tColor = (theta / (Math.PI * 2) + rand() * 0.3) % 1;
+      const c = tColor < 0.5
+        ? cyan.clone().lerp(violet, tColor * 2)
+        : violet.clone().lerp(magenta, (tColor - 0.5) * 2);
+      colors[i * 3] = c.r;
+      colors[i * 3 + 1] = c.g;
+      colors[i * 3 + 2] = c.b;
+    }
+
+    return { positions, colors, origPositions, phases };
+  }, []);
+
+  useFrame(({ clock, mouse: m }) => {
     if (!ref.current) return;
     const t = clock.getElapsedTime();
-    ref.current.rotation.x = tiltX + t * speedX;
-    ref.current.rotation.z = tiltZ + t * speedZ;
+
+    mouse.current.x += (m.x - mouse.current.x) * 0.022;
+    mouse.current.y += (m.y - mouse.current.y) * 0.022;
+
+    ref.current.rotation.y = mouse.current.x * 0.45 + t * 0.022;
+    ref.current.rotation.x = mouse.current.y * 0.3;
+
+    const pos = ref.current.geometry.attributes.position.array as Float32Array;
+    for (let i = 0; i < COUNT; i++) {
+      pos[i * 3]     = origPositions[i * 3]     + Math.sin(t * 0.22 + phases[i * 3])     * 0.13;
+      pos[i * 3 + 1] = origPositions[i * 3 + 1] + Math.cos(t * 0.18 + phases[i * 3 + 1]) * 0.10;
+      pos[i * 3 + 2] = origPositions[i * 3 + 2] + Math.sin(t * 0.28 + phases[i * 3 + 2]) * 0.08;
+    }
+    ref.current.geometry.attributes.position.needsUpdate = true;
   });
+
   return (
-    <mesh ref={ref}>
-      <torusGeometry args={[radius, tube, 12, 140]} />
-      <meshPhysicalMaterial
-        transmission={0.75}
-        roughness={0.02}
-        metalness={0.05}
-        iridescence={0.85}
-        iridescenceIOR={2.2}
-        iridescenceThicknessRange={[150, 700]}
-        color="#b0d8ff"
-        envMapIntensity={3}
-        clearcoat={1}
-        clearcoatRoughness={0}
+    <points ref={ref}>
+      <bufferGeometry>
+        <bufferAttribute attach="attributes-position" args={[positions, 3]} />
+        <bufferAttribute attach="attributes-color"    args={[colors, 3]} />
+      </bufferGeometry>
+      <pointsMaterial
+        size={0.048}
+        vertexColors
+        transparent
+        opacity={0.82}
+        sizeAttenuation
+        depthWrite={false}
       />
-    </mesh>
+    </points>
   );
 }
 
@@ -80,30 +106,11 @@ export default function HeroScene() {
   return (
     <Canvas
       dpr={[1, 1.4]}
-      gl={{ antialias: true, alpha: true, powerPreference: 'high-performance', toneMapping: THREE.ACESFilmicToneMapping }}
-      camera={{ position: [0, 0, 6], fov: 44 }}
+      gl={{ antialias: false, alpha: true, powerPreference: 'high-performance' }}
+      camera={{ position: [0, 0, 6.5], fov: 50 }}
     >
       <Suspense fallback={null}>
-        <ambientLight intensity={0.15} />
-        <pointLight position={[5, 4, 4]} intensity={1.6} color="#70b8ff" />
-        <pointLight position={[-4, -3, -3]} intensity={1.2} color="#c080ff" />
-        <pointLight position={[1, 5, -2]} intensity={0.7} color="#ffffff" />
-
-        <IridescentOrb />
-
-        <Ring radius={2.7} tube={0.03} tiltX={0.25} tiltZ={0.1} speedX={0.025} speedZ={0.015} />
-        <Ring radius={3.35} tube={0.018} tiltX={0.9} tiltZ={0.4} speedX={-0.012} speedZ={0.02} />
-
-        <Sparkles
-          count={28}
-          scale={[11, 7, 5]}
-          size={2.2}
-          speed={0.12}
-          color="#b0d8ff"
-          opacity={0.45}
-        />
-
-        <Environment preset="city" />
+        <ParticleNebula />
       </Suspense>
     </Canvas>
   );
