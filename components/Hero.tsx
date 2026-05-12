@@ -16,7 +16,7 @@ const featuredProjects = [
   },
   {
     title: 'DietPalAI',
-    description: 'A nutrition tracker that somehow understands chaotic food descriptions.',
+    description: 'Log meals in plain language or with precise measurements — the AI handles both equally well.',
     image: '/diet pal .png',
     href: '/case-studies#dietpalai',
     tag: 'AI · Web',
@@ -74,8 +74,8 @@ export default function Hero() {
           transition={{ duration: 0.8, ease, delay: 0.2 }}
           className="mt-8 mx-auto max-w-2xl text-center text-lg sm:text-xl text-foreground/75 leading-relaxed"
         >
-          I build AI-powered apps, interactive tools, and the occasional digital experiment
-          that probably shouldn&apos;t work but somehow does. Code that has a pulse.
+          I build end-to-end AI software that handles the tedious parts of people&apos;s work.
+          Studying AI at NSCC and always exploring where intelligent tools can unlock more creativity and efficiency.
         </motion.p>
 
         <motion.div

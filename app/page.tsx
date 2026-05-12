@@ -19,8 +19,8 @@ const pillars = [
   },
   {
     icon: Music4,
-    title: 'Interactive Audio',
-    description: 'Game audio, sound design, and adaptive systems built with Wwise, FMOD, and Unity.',
+    title: 'Creative Outlet',
+    description: 'I still produce music as Nocean semi-regularly. It keeps me creative and informs how I think about experience design.',
     color: 'magenta',
     href: '/audio',
   },
@@ -69,16 +69,19 @@ export default function Home() {
             className="lg:col-span-7"
           >
             <p className="font-mono text-xs uppercase tracking-widest text-neon-cyan mb-4">
-              About / Origin
+              About / Focus
             </p>
             <h2 className="font-display text-4xl sm:text-5xl font-bold mb-8 leading-tight">
-              From <span className="gradient-text">synths</span> to <span className="gradient-text">software</span>.
+              AI that does the <span className="gradient-text">hard work</span> for you.
             </h2>
             <div className="space-y-5 text-lg text-foreground/75 leading-relaxed">
               <p>
-                For more than a decade, I produced electronic music. shaping synths and building tracks
-                somewhere between ambient and experimental. Eventually I wanted to build more than beats,
-                so I taught myself to code and started creating things like{' '}
+                I&apos;m currently in a graduate AI program at NSCC, staying close to emerging tools and
+                industries while building end-to-end software focused on one thing: removing friction
+                from the tedious parts of people&apos;s work.
+              </p>
+              <p>
+                Projects like{' '}
                 <Link href="/case-studies#ai-gym-bro" className="text-neon-cyan hover:text-neon-magenta transition-colors underline decoration-dotted underline-offset-4">
                   AI Gym Bro
                 </Link>
@@ -86,11 +89,8 @@ export default function Home() {
                 <Link href="/case-studies#dietpalai" className="text-neon-cyan hover:text-neon-magenta transition-colors underline decoration-dotted underline-offset-4">
                   DietPalAI
                 </Link>
-                .
-              </p>
-              <p>
-                Now I build in the space where creativity and coding make music together. Where apps
-                have personality, tools feel human, and technology gets to be a little playful.
+                {' '}reflect that mindset: AI that fits the way you naturally think and talk,
+                rather than forcing you to adapt to it.
               </p>
             </div>
             <Link href="/about" className="btn-ghost mt-10">
@@ -128,7 +128,7 @@ export default function Home() {
               What I do / 003 modes
             </p>
             <h2 className="font-display text-4xl sm:text-5xl font-bold">
-              Three disciplines, <span className="gradient-text">one signal</span>.
+              Three modes, <span className="gradient-text">one focus</span>.
             </h2>
           </motion.div>
 

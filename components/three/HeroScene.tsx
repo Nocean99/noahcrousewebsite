@@ -1,141 +1,109 @@
 'use client';
 
 import { Canvas, useFrame } from '@react-three/fiber';
-import {
-  Float,
-  MeshDistortMaterial,
-  Sparkles,
-  Environment,
-  Stars,
-} from '@react-three/drei';
+import { Float, Sparkles, Environment } from '@react-three/drei';
 import { useRef, Suspense } from 'react';
 import * as THREE from 'three';
 
-function GlowOrb() {
-  const ref = useRef<THREE.Mesh>(null);
+function IridescentOrb() {
+  const outerRef = useRef<THREE.Mesh>(null);
+  const smooth = useRef({ x: 0, y: 0 });
 
   useFrame(({ clock, mouse }) => {
-    if (!ref.current) return;
+    if (!outerRef.current) return;
     const t = clock.getElapsedTime();
-    ref.current.rotation.x = t * 0.15 + mouse.y * 0.25;
-    ref.current.rotation.y = t * 0.2 + mouse.x * 0.35;
+    // Very soft mouse lerp — barely reacts, just feels alive
+    smooth.current.x += (mouse.x - smooth.current.x) * 0.018;
+    smooth.current.y += (mouse.y - smooth.current.y) * 0.018;
+    outerRef.current.rotation.y = smooth.current.x * 0.45 + t * 0.035;
+    outerRef.current.rotation.x = smooth.current.y * 0.25 + Math.sin(t * 0.12) * 0.04;
   });
 
   return (
-    <Float speed={1.4} rotationIntensity={0.4} floatIntensity={1.2}>
-      <mesh ref={ref} scale={1.6}>
-        <icosahedronGeometry args={[1, 24]} />
-        <MeshDistortMaterial
-          color="#00e7ff"
-          emissive="#0a3a55"
-          metalness={0.85}
-          roughness={0.15}
-          distort={0.45}
-          speed={1.8}
+    <Float speed={0.5} rotationIntensity={0.06} floatIntensity={0.3}>
+      {/* Glass orb */}
+      <mesh ref={outerRef}>
+        <sphereGeometry args={[1.85, 72, 72]} />
+        <meshPhysicalMaterial
+          transmission={0.94}
+          thickness={2.8}
+          roughness={0.04}
+          metalness={0}
+          iridescence={1}
+          iridescenceIOR={2.1}
+          iridescenceThicknessRange={[80, 1200]}
+          color="#cce8ff"
+          envMapIntensity={2.4}
+          clearcoat={1}
+          clearcoatRoughness={0.05}
         />
+      </mesh>
+      {/* Soft inner glow the glass refracts */}
+      <mesh scale={0.5}>
+        <sphereGeometry args={[1, 16, 16]} />
+        <meshBasicMaterial color="#90c0ff" transparent opacity={0.35} />
       </mesh>
     </Float>
   );
 }
 
-function MagentaShell() {
+function Ring({ radius, tube, tiltX, tiltZ, speedX, speedZ }: {
+  radius: number; tube: number; tiltX: number; tiltZ: number; speedX: number; speedZ: number;
+}) {
   const ref = useRef<THREE.Mesh>(null);
   useFrame(({ clock }) => {
     if (!ref.current) return;
     const t = clock.getElapsedTime();
-    ref.current.rotation.x = -t * 0.08;
-    ref.current.rotation.y = t * 0.12;
-    ref.current.scale.setScalar(2.2 + Math.sin(t * 0.6) * 0.08);
+    ref.current.rotation.x = tiltX + t * speedX;
+    ref.current.rotation.z = tiltZ + t * speedZ;
   });
-
   return (
     <mesh ref={ref}>
-      <torusKnotGeometry args={[1, 0.18, 200, 24, 2, 3]} />
-      <meshStandardMaterial
-        color="#ff3df0"
-        emissive="#5a0a4a"
-        emissiveIntensity={1.1}
-        metalness={0.9}
-        roughness={0.25}
-        wireframe
-        transparent
-        opacity={0.55}
+      <torusGeometry args={[radius, tube, 12, 140]} />
+      <meshPhysicalMaterial
+        transmission={0.75}
+        roughness={0.02}
+        metalness={0.05}
+        iridescence={0.85}
+        iridescenceIOR={2.2}
+        iridescenceThicknessRange={[150, 700]}
+        color="#b0d8ff"
+        envMapIntensity={3}
+        clearcoat={1}
+        clearcoatRoughness={0}
       />
     </mesh>
-  );
-}
-
-// Deterministic pseudo-random (mulberry32) seeded at module load so render stays pure.
-function makeCubes() {
-  let s = 0x9e3779b9;
-  const rand = () => {
-    s |= 0;
-    s = (s + 0x6d2b79f5) | 0;
-    let t = Math.imul(s ^ (s >>> 15), 1 | s);
-    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  };
-  return Array.from({ length: 14 }).map((_, i) => ({
-    id: i,
-    pos: [(rand() - 0.5) * 8, (rand() - 0.5) * 5, (rand() - 0.5) * 4 - 1] as [number, number, number],
-    scale: 0.05 + rand() * 0.12,
-    speed: 0.3 + rand() * 0.8,
-    color: rand() > 0.5 ? '#00e7ff' : '#ff3df0',
-  }));
-}
-const CUBES = makeCubes();
-
-function FloatingCubes() {
-  const cubes = CUBES;
-  return (
-    <>
-      {cubes.map((c) => (
-        <Float key={c.id} speed={c.speed} rotationIntensity={2} floatIntensity={2}>
-          <mesh position={c.pos} scale={c.scale}>
-            <boxGeometry args={[1, 1, 1]} />
-            <meshStandardMaterial
-              color={c.color}
-              emissive={c.color}
-              emissiveIntensity={1.2}
-              metalness={0.9}
-              roughness={0.2}
-            />
-          </mesh>
-        </Float>
-      ))}
-    </>
   );
 }
 
 export default function HeroScene() {
   return (
     <Canvas
-      dpr={[1, 1.6]}
-      gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
-      camera={{ position: [0, 0, 5], fov: 50 }}
+      dpr={[1, 1.4]}
+      gl={{ antialias: true, alpha: true, powerPreference: 'high-performance', toneMapping: THREE.ACESFilmicToneMapping }}
+      camera={{ position: [0, 0, 6], fov: 44 }}
     >
       <Suspense fallback={null}>
-        <color attach="background" args={['#00000000']} />
-        <ambientLight intensity={0.35} />
-        <pointLight position={[5, 5, 5]} intensity={2.2} color="#00e7ff" />
-        <pointLight position={[-5, -3, -2]} intensity={2.0} color="#ff3df0" />
-        <pointLight position={[0, 4, -3]} intensity={1.2} color="#8a5cff" />
+        <ambientLight intensity={0.15} />
+        <pointLight position={[5, 4, 4]} intensity={1.6} color="#70b8ff" />
+        <pointLight position={[-4, -3, -3]} intensity={1.2} color="#c080ff" />
+        <pointLight position={[1, 5, -2]} intensity={0.7} color="#ffffff" />
 
-        <GlowOrb />
-        <MagentaShell />
-        <FloatingCubes />
+        <IridescentOrb />
+
+        <Ring radius={2.7} tube={0.03} tiltX={0.25} tiltZ={0.1} speedX={0.025} speedZ={0.015} />
+        <Ring radius={3.35} tube={0.018} tiltX={0.9} tiltZ={0.4} speedX={-0.012} speedZ={0.02} />
 
         <Sparkles
-          count={80}
-          scale={[10, 6, 6]}
-          size={3}
-          speed={0.35}
-          color="#9fd8ff"
-          opacity={0.7}
+          count={28}
+          scale={[11, 7, 5]}
+          size={2.2}
+          speed={0.12}
+          color="#b0d8ff"
+          opacity={0.45}
         />
-        <Stars radius={40} depth={50} count={1200} factor={2.5} fade speed={1} />
 
-        <Environment preset="night" />
+        <Environment preset="city" />
       </Suspense>
     </Canvas>
   );
