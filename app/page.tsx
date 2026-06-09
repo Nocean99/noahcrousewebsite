@@ -4,8 +4,7 @@ import Hero from '@/components/Hero';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import OrbitalScene from '@/components/three/OrbitalSceneClient';
-import { ArrowRight, Code2, Music4, Sparkles, Cpu } from 'lucide-react';
+import { ArrowRight, Code2, Music4, Sparkles, Cpu, Radar } from 'lucide-react';
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -34,8 +33,8 @@ const pillars = [
 ];
 
 const marqueeWords = [
-  'AI · ', 'Flutter · ', 'React · ', 'Unity · ', 'Wwise · ', 'TypeScript · ',
-  'Python · ', 'OpenAI · ', 'Ableton · ', 'TensorFlow · ', 'Next.js · ', 'PostgreSQL · ',
+  'AUTOMATION · ', 'AGENTIC WORKFLOWS · ', 'LLM OPS · ', 'AI PRODUCTS · ', 'PYTHON · ', 'TYPESCRIPT · ',
+  'OPENAI · ', 'LANGCHAIN · ', 'NEXT.JS · ', 'FLUTTER · ', 'TENSORFLOW · ', 'POSTGRESQL · ',
 ];
 
 export default function Home() {
@@ -44,11 +43,11 @@ export default function Home() {
       <Hero />
 
       {/* Marquee */}
-      <section className="py-10 border-y border-white/10 bg-background/40">
+      <section className="py-8 border-y border-zinc-800 bg-black">
         <div className="marquee">
-          <div className="marquee-track font-display text-3xl sm:text-5xl font-bold text-foreground/30">
+          <div className="marquee-track font-display text-3xl sm:text-5xl font-black text-zinc-800 uppercase">
             {[...marqueeWords, ...marqueeWords].map((w, i) => (
-              <span key={i} className={i % 2 ? 'text-neon-magenta/40' : 'text-neon-cyan/30'}>
+              <span key={i} className={i % 2 ? 'text-[#CCFF00]/55' : 'text-zinc-700'}>
                 {w}
               </span>
             ))}
@@ -56,11 +55,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Story section with floating 3D */}
-      <section className="relative py-32 sm:py-40 overflow-hidden">
-        <div className="blob" style={{ background: '#8a5cff', width: 500, height: 500, top: '20%', left: '-12%' }} />
-
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-12 gap-12 items-center">
+      <section className="relative py-24 overflow-hidden">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-12 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -68,29 +64,24 @@ export default function Home() {
             transition={{ duration: 0.7, ease }}
             className="lg:col-span-7"
           >
-            <p className="font-mono text-xs uppercase tracking-widest text-neon-cyan mb-4">
-              About / Focus
+            <p className="technical-sm text-[#CCFF00] mb-4">
+              Focus
             </p>
-            <h2 className="font-display text-4xl sm:text-5xl font-bold mb-8 leading-tight">
-              AI that does the <span className="gradient-text">hard work</span> for you.
+            <h2 className="headline-lg text-white uppercase mb-8">
+              AI systems for <span className="text-[#CCFF00]">real-world workflows</span>.
             </h2>
-            <div className="space-y-5 text-lg text-foreground/75 leading-relaxed">
+            <div className="space-y-5 text-base text-zinc-400 leading-relaxed">
               <p>
-                I&apos;m currently in a graduate AI program at NSCC, staying close to emerging tools and
-                industries while building end-to-end software focused on one thing: removing friction
-                from the tedious parts of people&apos;s work.
+                My work focuses on applied AI, autonomy, perception, and decision-support systems.
+                I&apos;m especially interested in software that helps people interpret evidence,
+                automate repetitive workflows, and make better decisions.
               </p>
               <p>
-                Projects like{' '}
-                <Link href="/case-studies#ai-gym-bro" className="text-neon-cyan hover:text-neon-magenta transition-colors underline decoration-dotted underline-offset-4">
-                  AI Gym Bro
+                My latest project,{' '}
+                <Link href="/case-studies#aegis-mission-intelligence" className="text-[#CCFF00] hover:text-[#abd600] transition-colors underline decoration-dotted underline-offset-4">
+                  Aegis Mission Intelligence
                 </Link>
-                {' '}and{' '}
-                <Link href="/case-studies#dietpalai" className="text-neon-cyan hover:text-neon-magenta transition-colors underline decoration-dotted underline-offset-4">
-                  DietPalAI
-                </Link>
-                {' '}reflect that mindset: AI that fits the way you naturally think and talk,
-                rather than forcing you to adapt to it.
+                , brings that focus into a simulation-first autonomy and mission intelligence workflow.
               </p>
             </div>
             <Link href="/about" className="btn-ghost mt-10">
@@ -106,33 +97,43 @@ export default function Home() {
             transition={{ duration: 0.8, ease }}
             className="lg:col-span-5 relative aspect-square max-w-md mx-auto w-full"
           >
-            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-neon-cyan/20 via-neon-violet/20 to-neon-magenta/20 blur-3xl" />
-            <div className="relative w-full h-full">
-              <OrbitalScene shape="knot" primary="#8a5cff" secondary="#00e7ff" />
+            <div className="terminal-panel h-full p-6 flex flex-col justify-between">
+              <div>
+                <p className="terminal-label mb-5">How I think about systems</p>
+                <div className="space-y-3 font-mono text-xs uppercase tracking-widest">
+                  {['Understand the goal', 'Plan the workflow', 'Collect evidence', 'Rank what matters', 'Keep humans in control', 'Report clearly'].map((step, index) => (
+                    <div key={step} className="flex items-center gap-3 border border-zinc-800 bg-black p-3">
+                      <span className="text-[#CCFF00]">0{index + 1}</span>
+                      <span className="text-zinc-400">{step}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <Radar className="w-10 h-10 text-terminal-green mt-8" />
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* Pillars */}
-      <section className="relative py-32 sm:py-40">
+      <section className="relative py-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.6, ease }}
-            className="text-center mb-20"
+            className="mb-10 border-l-4 border-[#CCFF00] pl-4"
           >
-            <p className="font-mono text-xs uppercase tracking-widest text-neon-cyan mb-3">
-              What I do / 003 modes
+            <p className="technical-sm text-[#CCFF00] mb-3">
+              Focus areas
             </p>
-            <h2 className="font-display text-4xl sm:text-5xl font-bold">
-              Three modes, <span className="gradient-text">one focus</span>.
+            <h2 className="headline-lg text-white uppercase">
+              Three focus areas, <span className="text-[#CCFF00]">one portfolio</span>.
             </h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-px bg-zinc-800 border border-zinc-800">
             {pillars.map((p, i) => {
               const color = p.color;
               return (
@@ -148,22 +149,22 @@ export default function Home() {
                     className="neon-card group block p-8 h-full"
                   >
                     <div
-                      className={`mb-6 w-14 h-14 rounded-2xl flex items-center justify-center border ${
+                      className={`mb-6 w-14 h-14 flex items-center justify-center border ${
                         color === 'cyan'
-                          ? 'border-neon-cyan/40 bg-neon-cyan/10 text-neon-cyan shadow-[0_0_30px_rgba(0,231,255,0.2)]'
+                          ? 'border-[#CCFF00] bg-black text-[#CCFF00]'
                           : color === 'magenta'
-                          ? 'border-neon-magenta/40 bg-neon-magenta/10 text-neon-magenta shadow-[0_0_30px_rgba(255,61,240,0.2)]'
-                          : 'border-neon-violet/40 bg-neon-violet/10 text-neon-violet shadow-[0_0_30px_rgba(138,92,255,0.2)]'
+                          ? 'border-zinc-700 bg-black text-zinc-300'
+                          : 'border-zinc-700 bg-black text-zinc-500'
                       }`}
                     >
                       <p.icon className="w-7 h-7" />
                     </div>
-                    <h3 className="font-display text-2xl font-bold mb-3 group-hover:text-neon-cyan transition-colors">
+                    <h3 className="headline-md text-xl mb-3 group-hover:text-[#CCFF00] uppercase transition-colors">
                       {p.title}
                     </h3>
-                    <p className="text-foreground/70 leading-relaxed mb-6">{p.description}</p>
-                    <span className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-widest text-foreground/60 group-hover:text-neon-cyan transition-colors">
-                      Explore
+                    <p className="text-zinc-400 text-sm leading-relaxed mb-6">{p.description}</p>
+                    <span className="inline-flex items-center gap-1.5 technical-sm text-zinc-500 group-hover:text-[#CCFF00] transition-colors">
+                      EXPLORE
                       <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                     </span>
                   </Link>
@@ -175,35 +176,31 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section className="relative py-32 sm:py-40">
+      <section className="relative py-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.7, ease }}
-            className="relative glass-strong rounded-3xl p-10 sm:p-16 text-center overflow-hidden"
+          transition={{ duration: 0.7, ease }}
+            className="relative terminal-panel p-10 sm:p-16 text-center overflow-hidden"
           >
-            <div className="blob" style={{ background: '#00e7ff', width: 300, height: 300, top: '-40%', left: '10%', opacity: 0.4 }} />
-            <div className="blob" style={{ background: '#ff3df0', width: 280, height: 280, bottom: '-40%', right: '10%', opacity: 0.4, animationDelay: '3s' }} />
-
-            <Sparkles className="w-8 h-8 text-neon-cyan mx-auto mb-6" />
-            <h2 className="font-display text-4xl sm:text-5xl font-bold mb-6 leading-tight">
+            <Sparkles className="w-8 h-8 text-[#CCFF00] mx-auto mb-6" />
+            <h2 className="headline-lg text-white uppercase mb-6">
               Got a wild idea?
               <br />
-              <span className="gradient-text">Let&apos;s build it together.</span>
+              <span className="text-[#CCFF00]">Let&apos;s build it together.</span>
             </h2>
-            <p className="text-lg text-foreground/75 max-w-xl mx-auto mb-10">
-              Open to roles in creative technology, AI-driven experiences, and anything where
-              code needs a creative pulse.
+            <p className="text-base text-zinc-400 max-w-xl mx-auto mb-10">
+              Open to AI, autonomy, computer vision, workflow automation, and creative technology work.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact" className="btn-neon">
-                Work With Me
+                Work with me
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link href="/case-studies" className="btn-ghost">
-                See what I&apos;ve built
+                View my work
               </Link>
             </div>
           </motion.div>

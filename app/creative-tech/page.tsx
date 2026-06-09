@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Footer from '@/components/Footer';
-import OrbitalScene from '@/components/three/OrbitalSceneClient';
 import { Code2, Sparkles, ArrowRight } from 'lucide-react';
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -14,12 +13,12 @@ const fadeUp = {
 };
 
 const skillAreas = [
-  { category: 'AI & ML', skills: ['OpenAI API', 'GPT Integration', 'TensorFlow', 'Prompt Engineering', 'NLP'], color: 'cyan' as const },
+  { category: 'AI & ML', skills: ['OpenAI API', 'Computer Vision', 'Pattern Recognition', 'TensorFlow', 'Prompt Engineering'], color: 'cyan' as const },
+  { category: 'Autonomy & Robotics', skills: ['Mission Planning', 'Decision Support', 'Human-in-the-loop Systems', 'Sensor Workflows'], color: 'magenta' as const },
   { category: 'Mobile & Frontend', skills: ['Flutter', 'React', 'Next.js', 'TypeScript', 'Tailwind CSS'], color: 'magenta' as const },
   { category: 'Backend & Data', skills: ['Python', 'Flask', 'Node.js', 'PostgreSQL', 'REST APIs'], color: 'violet' as const },
-  { category: 'Game & Interactive', skills: ['Unity', 'C#', 'Physics Systems', 'Procedural Generation'], color: 'cyan' as const },
+  { category: 'Automation & Deployment', skills: ['Workflow Automation', 'Software Deployment', 'Data Pipelines', 'Git', 'CI/CD'], color: 'cyan' as const },
   { category: 'Audio & Sound', skills: ['Wwise', 'Ableton Live', 'Serum', 'Sound Design', 'Interactive Audio'], color: 'magenta' as const },
-  { category: 'Tools & Workflow', skills: ['Git', 'CI/CD', 'Cursor', 'Xcode', 'Android Studio'], color: 'violet' as const },
 ];
 
 const explorations = [
@@ -48,9 +47,9 @@ const projectLinks = [
 ];
 
 const colorRing = {
-  cyan: 'border-neon-cyan/30 hover:border-neon-cyan/70 hover:shadow-[0_0_30px_-5px_rgba(0,231,255,0.5)]',
-  magenta: 'border-neon-magenta/30 hover:border-neon-magenta/70 hover:shadow-[0_0_30px_-5px_rgba(255,61,240,0.5)]',
-  violet: 'border-neon-violet/30 hover:border-neon-violet/70 hover:shadow-[0_0_30px_-5px_rgba(138,92,255,0.5)]',
+  cyan: 'border-zinc-800 hover:border-[#CCFF00]',
+  magenta: 'border-zinc-800 hover:border-[#CCFF00]',
+  violet: 'border-zinc-800 hover:border-[#CCFF00]',
 };
 
 const colorText = {
@@ -63,10 +62,7 @@ export default function CreativeTechPage() {
   return (
     <main className="min-h-screen w-full pt-32 pb-20">
       {/* Hero */}
-      <section className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
-        <div className="blob" style={{ background: '#8a5cff', width: 400, height: 400, top: '0%', left: '-12%' }} />
-        <div className="blob" style={{ background: '#00e7ff', width: 360, height: 360, top: '30%', right: '-10%', animationDelay: '4s' }} />
-
+      <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
         <div className="grid lg:grid-cols-12 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -79,10 +75,10 @@ export default function CreativeTechPage() {
               Tech / Stack
             </span>
             <h1 className="font-display text-5xl sm:text-6xl md:text-7xl font-bold leading-[0.95] mb-6">
-              Where <span className="gradient-text">creativity</span> & code make music.
+              Tools I use to <span className="gradient-text">build</span>.
             </h1>
             <p className="text-xl text-foreground/75 max-w-xl leading-relaxed">
-              The tools and disciplines I reach for when building things that feel alive.
+              A quick view of the stack behind my AI, autonomy, web, mobile, and audio projects.
             </p>
           </motion.div>
 
@@ -92,8 +88,20 @@ export default function CreativeTechPage() {
             transition={{ duration: 0.8, ease, delay: 0.2 }}
             className="lg:col-span-5 relative aspect-square max-w-md mx-auto w-full"
           >
-            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-neon-violet/30 to-neon-cyan/30 blur-3xl" />
-            <OrbitalScene shape="icosa" primary="#00e7ff" secondary="#8a5cff" />
+            <div className="terminal-panel h-full p-6 flex flex-col justify-between">
+              <div>
+                <p className="terminal-label mb-5">Core stack</p>
+                <div className="space-y-3 font-mono text-xs uppercase tracking-widest">
+                  {['AI and ML', 'Autonomy and robotics', 'Computer vision', 'Workflow automation', 'Audio systems'].map((item, index) => (
+                    <div key={item} className="flex items-center justify-between border-b border-zinc-900 pb-3">
+                      <span className="text-muted-foreground">0{index + 1}</span>
+                      <span className="text-foreground/80 text-right">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <Code2 className="w-10 h-10 text-terminal-green" />
+            </div>
           </motion.div>
         </div>
       </section>
@@ -105,7 +113,7 @@ export default function CreativeTechPage() {
         <motion.div {...fadeUp} transition={{ duration: 0.7, ease }} className="mb-12">
           <div className="flex items-baseline gap-4 mb-6">
             <span className="font-mono text-sm text-neon-cyan tracking-widest">01</span>
-            <div className="flex-1 h-px bg-gradient-to-r from-neon-cyan/40 via-white/10 to-transparent" />
+            <div className="flex-1 h-px bg-zinc-800" />
           </div>
           <h2 className="font-display text-4xl sm:text-5xl font-bold gradient-text">What I Work With</h2>
         </motion.div>
@@ -116,14 +124,14 @@ export default function CreativeTechPage() {
               key={area.category}
               {...fadeUp}
               transition={{ duration: 0.5, delay: i * 0.06, ease }}
-              className={`glass rounded-2xl p-6 border transition-all ${colorRing[area.color]}`}
+              className={`glass p-6 border transition-all ${colorRing[area.color]}`}
             >
               <h3 className={`font-display font-bold mb-4 ${colorText[area.color]}`}>{area.category}</h3>
               <div className="flex flex-wrap gap-2">
                 {area.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="px-2.5 py-1 text-xs font-mono uppercase tracking-wider rounded-full border border-white/10 bg-white/[0.03] text-foreground/70"
+                    className="px-2.5 py-1 text-xs font-mono uppercase tracking-wider border border-zinc-800 bg-black text-zinc-400"
                   >
                     {skill}
                   </span>
@@ -139,7 +147,7 @@ export default function CreativeTechPage() {
         <motion.div {...fadeUp} transition={{ duration: 0.7, ease }} className="mb-12">
           <div className="flex items-baseline gap-4 mb-6">
             <span className="font-mono text-sm text-neon-magenta tracking-widest">02</span>
-            <div className="flex-1 h-px bg-gradient-to-r from-neon-magenta/40 via-white/10 to-transparent" />
+            <div className="flex-1 h-px bg-zinc-800" />
           </div>
           <h2 className="font-display text-4xl sm:text-5xl font-bold gradient-text">Browse by Type</h2>
         </motion.div>
@@ -168,10 +176,10 @@ export default function CreativeTechPage() {
         <motion.div {...fadeUp} transition={{ duration: 0.7, ease }} className="mb-10">
           <div className="flex items-baseline gap-4 mb-6">
             <span className="font-mono text-sm text-neon-violet tracking-widest">03</span>
-            <div className="flex-1 h-px bg-gradient-to-r from-neon-violet/40 via-white/10 to-transparent" />
+            <div className="flex-1 h-px bg-zinc-800" />
           </div>
           <h2 className="font-display text-4xl sm:text-5xl font-bold mb-4 gradient-text">
-            Now Exploring
+            Currently exploring
           </h2>
           <p className="text-lg text-foreground/70">
             Not finished products. Active curiosities.

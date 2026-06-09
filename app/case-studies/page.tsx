@@ -3,8 +3,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Footer from '@/components/Footer';
-import OrbitalScene from '@/components/three/OrbitalSceneClient';
-import { FolderGit2, ArrowUpRight, Sparkles } from 'lucide-react';
+import { FolderGit2, ArrowUpRight, Sparkles, Radar } from 'lucide-react';
 
 const ease = [0.22, 1, 0.36, 1] as const;
 const fadeUp = {
@@ -28,9 +27,52 @@ interface CaseStudy {
   whatILearned: string;
   techStack: string[];
   links: { label: string; href: string }[];
+  benchmark?: {
+    modality: string;
+    strategy: string;
+    images: string;
+    precision: string;
+    recall: string;
+    f1: string;
+  }[];
+  currentDirection?: string[];
 }
 
 const caseStudies: CaseStudy[] = [
+  {
+    id: 'aegis-mission-intelligence',
+    title: 'Aegis Mission Intelligence',
+    tagline: 'Multi-sensor mission intelligence',
+    opening:
+      'Aegis is my most recent AI/autonomy project: a simulation-first mission intelligence layer that turns sensor evidence into prioritized findings, analyst review workflows, mission memory, and structured mission reports.',
+    whatItDoes:
+      'Aegis takes a high-level mission request and moves it through mission planning, sensor evidence processing, proposal detection, semantic scoring, candidate ranking, analyst review, mission memory, and reporting. The goal is not just object detection. It is helping an operator decide which observations deserve attention while preserving uncertain evidence.',
+    whyIBuiltIt:
+      'The project began as a drone-based search and perception system, then evolved into a broader mission intelligence platform that can support RGB imagery, infrared imagery, video, and future acoustic or sonar inputs.',
+    creativeProcess:
+      'I designed Aegis around analyst burden rather than model spectacle. Each stage asks whether it helps preserve relevant evidence, reduce noisy review queues, or produce a clearer mission record.',
+    technicalDecisions:
+      'The system is benchmark-driven and simulation-first. I use Python evaluation pipelines, labeled datasets, capture precision, capture recall, and capture F1 to compare local triage strategies against semantic review strategies.',
+    aiIntegration:
+      'AI is used as part of a review and ranking layer, not as a black box. Local proposal systems preserve candidates, semantic scoring helps clean noisy queues, and mission memory keeps uncertainty available for human review.',
+    howItWorks:
+      'Mission Request -> Mission Planning -> Sensor Evidence -> Proposal Detection -> Semantic Scoring -> Candidate Ranking -> Analyst Review -> Mission Memory -> Mission Report.',
+    whatILearned:
+      'Review strategy should depend on sensor modality. RGB vehicle evidence benefited from semantic cleanup, while infrared evidence performed better with fast local hot-blob triage when the signal was already strong.',
+    techStack: ['Python', 'Computer Vision', 'Evaluation Pipelines', 'RGB/IR Workflows', 'Human-in-the-loop AI'],
+    links: [],
+    benchmark: [
+      { modality: 'RGB', strategy: 'Local vehicle proposals', images: '500', precision: '50.0%', recall: '100.0%', f1: '66.7%' },
+      { modality: 'RGB', strategy: 'API semantic review', images: '100', precision: '73.2%', recall: '95.3%', f1: '82.8%' },
+      { modality: 'Infrared', strategy: 'Local hot-blob triage', images: '500', precision: '89.4%', recall: '100.0%', f1: '94.4%' },
+      { modality: 'Infrared', strategy: 'API semantic review', images: '100', precision: '61.1%', recall: '100.0%', f1: '75.9%' },
+    ],
+    currentDirection: [
+      'Aegis Vision Intelligence for RGB imagery',
+      'Aegis Infrared Intelligence for thermal imagery',
+      'Aegis Acoustic Intelligence for future sonar, hydrophone, and signal-based sensing',
+    ],
+  },
   {
     id: 'ai-gym-bro',
     title: 'AI Gym Bro',
@@ -190,6 +232,51 @@ function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
             </div>
           )}
 
+          {study.benchmark && (
+            <div>
+              <h3 className="font-mono text-xs uppercase tracking-widest text-neon-cyan mb-4">Benchmark-driven evaluation</h3>
+              <div className="overflow-x-auto border border-white/10">
+                <table className="data-table min-w-[720px]">
+                  <thead>
+                    <tr>
+                      <th>Modality</th>
+                      <th>Strategy</th>
+                      <th>Images</th>
+                      <th>Precision</th>
+                      <th>Recall</th>
+                      <th>F1</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {study.benchmark.map((row) => (
+                      <tr key={`${row.modality}-${row.strategy}`}>
+                        <td>{row.modality}</td>
+                        <td>{row.strategy}</td>
+                        <td>{row.images}</td>
+                        <td>{row.precision}</td>
+                        <td>{row.recall}</td>
+                        <td>{row.f1}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+
+          {study.currentDirection && (
+            <div>
+              <h3 className="font-mono text-xs uppercase tracking-widest text-neon-magenta mb-3">Current direction</h3>
+              <div className="grid sm:grid-cols-3 gap-3">
+                {study.currentDirection.map((item) => (
+                  <div key={item} className="border border-white/10 bg-white/[0.03] p-4 text-sm text-foreground/75">
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           <div className="grid sm:grid-cols-2 gap-8">
             <div>
               <h3 className="font-mono text-xs uppercase tracking-widest text-neon-cyan mb-3">How it works</h3>
@@ -207,7 +294,7 @@ function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
               {study.techStack.map((tech) => (
                 <span
                   key={tech}
-                  className="px-2.5 py-1 text-xs font-mono uppercase tracking-wider rounded-full border border-white/10 bg-white/[0.03] text-foreground/70"
+                  className="px-2.5 py-1 text-xs font-mono uppercase tracking-wider border border-white/10 bg-white/[0.03] text-foreground/70"
                 >
                   {tech}
                 </span>
@@ -241,10 +328,7 @@ export default function CaseStudiesPage() {
   return (
     <main className="min-h-screen w-full pt-32 pb-20">
       {/* Hero */}
-      <section className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
-        <div className="blob" style={{ background: '#00e7ff', width: 380, height: 380, top: '-10%', left: '-12%' }} />
-        <div className="blob" style={{ background: '#ff3df0', width: 340, height: 340, top: '30%', right: '-10%', animationDelay: '3s' }} />
-
+      <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
         <div className="grid lg:grid-cols-12 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -271,8 +355,25 @@ export default function CaseStudiesPage() {
             transition={{ duration: 0.8, ease, delay: 0.2 }}
             className="lg:col-span-5 relative aspect-square max-w-md mx-auto w-full"
           >
-            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-neon-cyan/30 to-neon-magenta/30 blur-3xl" />
-            <OrbitalScene shape="knot" primary="#00e7ff" secondary="#ff3df0" />
+            <div className="terminal-panel h-full p-6 flex flex-col justify-between">
+              <div>
+                <p className="terminal-label mb-5">Project highlights</p>
+                <div className="space-y-3 font-mono text-xs uppercase tracking-widest">
+                  {[
+                    ['Lead project', 'Aegis'],
+                    ['Evaluation', 'Capture F1'],
+                    ['Evidence', 'RGB / IR / Video'],
+                    ['Next module', 'Acoustic'],
+                  ].map(([label, value]) => (
+                    <div key={label} className="flex items-center justify-between border-b border-white/10 pb-3">
+                      <span className="text-muted-foreground">{label}</span>
+                      <span className="text-terminal-green text-right">{value}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <Radar className="w-10 h-10 text-terminal-green" />
+            </div>
           </motion.div>
         </div>
       </section>
@@ -280,7 +381,7 @@ export default function CaseStudiesPage() {
       <div className="divider-neon max-w-6xl mx-auto mb-20" />
 
       {/* Case studies list */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 mb-24">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 mb-24">
         {caseStudies.map((study, index) => (
           <CaseStudyCard key={study.id} study={study} index={index} />
         ))}
@@ -288,7 +389,7 @@ export default function CaseStudiesPage() {
 
       {/* Closing CTA */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div {...fadeUp} transition={{ duration: 0.7, ease }} className="glass-strong rounded-3xl p-10 sm:p-14 text-center">
+        <motion.div {...fadeUp} transition={{ duration: 0.7, ease }} className="terminal-panel p-10 sm:p-14 text-center">
           <Sparkles className="w-8 h-8 text-neon-cyan mx-auto mb-6" />
           <h2 className="font-display text-3xl sm:text-4xl font-bold mb-4">
             More on <span className="gradient-text">GitHub</span>.

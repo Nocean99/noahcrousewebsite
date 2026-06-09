@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import Footer from '@/components/Footer';
-import OrbitalScene from '@/components/three/OrbitalSceneClient';
 import { ArrowRight, Sparkles } from 'lucide-react';
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -19,31 +18,28 @@ const sections = [
     label: '01',
     title: 'Who I Am',
     body: [
-      'I\'m a multidisciplinary developer and audio designer with a passion for creating immersive digital experiences. I like making technology feel a little more human. Responsive, expressive, and just unpredictable enough to stay interesting.',
-      'With over a decade of music production experience, I evolved from crafting sonic landscapes to building interactive applications that combine technology, design, and user experience. Both worlds are about shaping raw material into something people feel.',
+      'I\'m a software developer focused on autonomy, intelligent systems, and applied artificial intelligence.',
     ],
   },
   {
     label: '02',
-    title: 'What I Build',
+    title: 'Current Work',
     body: [
-      'AI-powered social apps, Unity games with dynamic physics and procedural generation, immersive audio experiences with synthesis and middleware like Wwise. The common thread: personality.',
-      'I don\'t build tools that feel like tools. I build things that feel like they were made by a human who cares.',
+      'I work on AI-powered applications, workflow automations, computer vision, mission planning, and decision-support systems. I also use AI tools in digital content and operational workflows at O\'Regan\'s Automotive Group.',
     ],
   },
   {
     label: '03',
-    title: 'How I Work',
+    title: 'Recent Projects',
     body: [
-      'Ship fast, get feedback, iterate. I believe in building products that solve real problems, using modern technologies like AI to create intuitive, conversational interfaces. Whether I\'m coding a Flutter app, designing game audio, or crafting soundscapes. prototype quickly, test with real people, refine until it clicks.',
+      'Recent projects include Aegis Mission Intelligence, AI Gym Bro, DietPalAI, AI image detection, Unity prototypes, and interactive audio work.',
     ],
   },
   {
     label: '04',
-    title: 'What Drives Me',
+    title: 'Background',
     body: [
-      'The moment when a tool stops feeling like software and starts feeling like a collaborator. When an AI coach actually motivates you. When a game sound makes you flinch. When an interface anticipates what you need.',
-      'That space between "functional" and "delightful" is where I live.',
+      'I have a BA in Music, a Professional Certificate in Game Audio Design & Production from Berklee Online, and I\'m entering NSCC\'s Graduate Certificate in IT Programming for Artificial Intelligence.',
     ],
   },
 ];
@@ -52,10 +48,7 @@ export default function AboutPage() {
   return (
     <main className="min-h-screen w-full pt-32 pb-20">
       {/* Hero */}
-      <section className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
-        <div className="blob" style={{ background: '#00e7ff', width: 380, height: 380, top: '-10%', left: '-10%' }} />
-        <div className="blob" style={{ background: '#ff3df0', width: 340, height: 340, top: '40%', right: '-8%', animationDelay: '3s' }} />
-
+      <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
         <div className="grid lg:grid-cols-12 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -68,11 +61,10 @@ export default function AboutPage() {
               Profile / About
             </span>
             <h1 className="font-display text-5xl sm:text-6xl md:text-7xl font-bold leading-[0.95] mb-6">
-              Building <span className="gradient-text">human</span> tech
+              Building <span className="gradient-text">useful</span> AI systems
             </h1>
             <p className="text-xl text-foreground/75 max-w-xl leading-relaxed">
-              Developer, audio designer, lifelong synth-head. I make digital things that feel
-              alive instead of installed.
+              AI and autonomy developer with a background in music, game audio, software, and applied AI.
             </p>
           </motion.div>
 
@@ -82,9 +74,8 @@ export default function AboutPage() {
             transition={{ duration: 0.8, ease, delay: 0.2 }}
             className="lg:col-span-5"
           >
-            <div className="relative aspect-square max-w-sm mx-auto">
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-neon-cyan/30 via-neon-violet/20 to-neon-magenta/30 blur-2xl" />
-              <div className="relative h-full w-full rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_60px_-15px_rgba(0,231,255,0.5)]">
+            <div className="relative aspect-square max-w-sm mx-auto terminal-panel p-3">
+              <div className="relative h-full w-full overflow-hidden border border-terminal-green/20">
                 <Image
                   src="/headshot.png"
                   alt="Noah Crouse"
@@ -92,10 +83,10 @@ export default function AboutPage() {
                   className="object-cover"
                   priority
                 />
-                <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-3xl pointer-events-none" />
+                <div className="absolute inset-0 ring-1 ring-inset ring-white/10 pointer-events-none" />
               </div>
               <div className="absolute -bottom-4 -right-4 chip chip-magenta">
-                <span className="w-1.5 h-1.5 rounded-full bg-neon-lime shadow-[0_0_10px_rgba(180,255,57,0.8)]" />
+                <span className="w-1.5 h-1.5 bg-[#CCFF00]" />
                 Online
               </div>
             </div>
@@ -111,7 +102,7 @@ export default function AboutPage() {
           <motion.section key={s.label} {...fadeUp} transition={{ duration: 0.7, delay: i * 0.05, ease }}>
             <div className="flex items-baseline gap-4 mb-6">
               <span className="font-mono text-sm text-neon-magenta tracking-widest">{s.label}</span>
-              <div className="flex-1 h-px bg-gradient-to-r from-neon-cyan/40 via-white/10 to-transparent" />
+              <div className="flex-1 h-px bg-zinc-800" />
             </div>
             <h2 className="font-display text-4xl sm:text-5xl font-bold mb-8">
               <span className="gradient-text">{s.title}</span>
@@ -141,19 +132,25 @@ export default function AboutPage() {
         ))}
       </div>
 
-      {/* 3D + CTA */}
-      <section className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-12 gap-12 items-center glass-strong rounded-3xl p-10 sm:p-14">
-          <div className="lg:col-span-5 aspect-square max-w-xs mx-auto w-full">
-            <OrbitalScene shape="octa" primary="#ff3df0" secondary="#00e7ff" />
+      <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-12 gap-12 items-center terminal-panel p-10 sm:p-14">
+          <div className="lg:col-span-5 w-full">
+            <p className="terminal-label mb-5">Useful when</p>
+            <div className="space-y-3 font-mono text-xs uppercase tracking-widest">
+              {['AI system design', 'Computer vision workflows', 'Workflow automation', 'Human-in-the-loop tools'].map((item, index) => (
+                <div key={item} className="flex items-center justify-between border-b border-zinc-900 pb-3">
+                  <span className="text-muted-foreground">0{index + 1}</span>
+                  <span className="text-foreground/80 text-right">{item}</span>
+                </div>
+              ))}
+            </div>
           </div>
           <div className="lg:col-span-7 text-center lg:text-left">
             <h2 className="font-display text-3xl sm:text-4xl font-bold mb-6">
-              Curious about a collab?
+              Want to work together?
             </h2>
             <p className="text-foreground/75 mb-8 max-w-lg">
-              I&apos;m most useful when the brief is fuzzy and the goal is to make something feel
-              alive. Bring me in early.
+              I&apos;m open to AI, autonomy, computer vision, software deployment, and workflow automation projects.
             </p>
             <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
               <Link href="/case-studies" className="btn-neon">

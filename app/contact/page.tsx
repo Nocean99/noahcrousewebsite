@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Music, Mail, ArrowUpRight, Sparkles } from 'lucide-react';
 import Footer from '@/components/Footer';
-import OrbitalScene from '@/components/three/OrbitalSceneClient';
 
 const ease = [0.22, 1, 0.36, 1] as const;
 const fadeUp = {
@@ -44,19 +43,16 @@ const socialLinks = [
 ];
 
 const accentClasses = {
-  cyan: 'group-hover:text-neon-cyan group-hover:border-neon-cyan/60 group-hover:shadow-[0_0_30px_-8px_rgba(0,231,255,0.6)]',
-  magenta: 'group-hover:text-neon-magenta group-hover:border-neon-magenta/60 group-hover:shadow-[0_0_30px_-8px_rgba(255,61,240,0.6)]',
-  violet: 'group-hover:text-neon-violet group-hover:border-neon-violet/60 group-hover:shadow-[0_0_30px_-8px_rgba(138,92,255,0.6)]',
+  cyan: 'group-hover:text-[#CCFF00] group-hover:border-[#CCFF00]',
+  magenta: 'group-hover:text-[#CCFF00] group-hover:border-[#CCFF00]',
+  violet: 'group-hover:text-[#CCFF00] group-hover:border-[#CCFF00]',
 };
 
 export default function ContactPage() {
   return (
     <main className="min-h-screen w-full pt-32 pb-20">
       {/* Hero */}
-      <section className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
-        <div className="blob" style={{ background: '#00e7ff', width: 420, height: 420, top: '-15%', left: '-12%' }} />
-        <div className="blob" style={{ background: '#ff3df0', width: 380, height: 380, top: '20%', right: '-10%', animationDelay: '3s' }} />
-
+      <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
         <div className="grid lg:grid-cols-12 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -65,17 +61,15 @@ export default function ContactPage() {
             className="lg:col-span-7"
           >
             <span className="chip mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-neon-lime shadow-[0_0_10px_rgba(180,255,57,0.8)] animate-pulse" />
+              <span className="w-1.5 h-1.5 bg-[#CCFF00] animate-pulse" />
               Currently open to opportunities
             </span>
             <h1 className="font-display text-5xl sm:text-6xl md:text-7xl font-bold leading-[0.95] mb-6">
               Let&apos;s build <br />
-              <span className="gradient-text">something weird</span> together.
+              <span className="gradient-text">something useful</span>.
             </h1>
             <p className="text-xl text-foreground/75 max-w-xl leading-relaxed">
-              I&apos;m open to roles in creative technology, product design, and AI-driven
-              experiences. If you&apos;re building something where creativity and code need
-              to work together, I&apos;d love to talk.
+              Open to roles and collaborations in AI, autonomy, computer vision, workflow automation, and creative technology.
             </p>
           </motion.div>
 
@@ -85,8 +79,25 @@ export default function ContactPage() {
             transition={{ duration: 0.8, ease, delay: 0.2 }}
             className="lg:col-span-5 relative aspect-square max-w-md mx-auto w-full"
           >
-            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-neon-cyan/30 via-neon-violet/20 to-neon-magenta/30 blur-3xl" />
-            <OrbitalScene shape="octa" primary="#00e7ff" secondary="#ff3df0" />
+            <div className="terminal-panel h-full p-6 flex flex-col justify-between">
+              <div>
+                <p className="terminal-label mb-5">Contact</p>
+                <div className="space-y-3 font-mono text-xs uppercase tracking-widest">
+                  {[
+                    ['Email', 'Primary'],
+                    ['LinkedIn', 'Roles / Collabs'],
+                    ['GitHub', 'Projects'],
+                    ['SoundCloud', 'Nocean'],
+                  ].map(([label, value]) => (
+                    <div key={label} className="flex items-center justify-between border-b border-zinc-900 pb-3">
+                      <span className="text-muted-foreground">{label}</span>
+                      <span className="text-terminal-green text-right">{value}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <Mail className="w-10 h-10 text-terminal-green" />
+            </div>
           </motion.div>
         </div>
       </section>
@@ -96,8 +107,8 @@ export default function ContactPage() {
       {/* Channels */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
         <motion.div {...fadeUp} transition={{ duration: 0.7, ease }} className="mb-10">
-          <p className="font-mono text-xs uppercase tracking-widest text-neon-cyan mb-3">Channels open</p>
-          <h2 className="font-display text-3xl sm:text-4xl font-bold gradient-text">Pick a frequency</h2>
+          <p className="font-mono text-xs uppercase tracking-widest text-neon-cyan mb-3">Links</p>
+          <h2 className="font-display text-3xl sm:text-4xl font-bold gradient-text">Get in touch</h2>
         </motion.div>
 
         <div className="space-y-4">
@@ -111,9 +122,9 @@ export default function ContactPage() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.5, delay: i * 0.08, ease }}
-              className={`group flex items-center gap-5 p-5 sm:p-6 rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur transition-all ${accentClasses[link.accent]}`}
+              className={`group flex items-center gap-5 p-5 sm:p-6 border border-zinc-800 bg-black transition-all ${accentClasses[link.accent]}`}
             >
-              <div className="shrink-0 w-12 h-12 rounded-xl border border-white/10 bg-white/[0.04] flex items-center justify-center transition-colors">
+              <div className="shrink-0 w-12 h-12 border border-zinc-800 bg-black flex items-center justify-center transition-colors">
                 <link.icon className="w-5 h-5 transition-colors" />
               </div>
               <div className="flex-1">
@@ -128,15 +139,14 @@ export default function ContactPage() {
         <motion.div
           {...fadeUp}
           transition={{ duration: 0.7, ease, delay: 0.2 }}
-          className="mt-16 glass-strong rounded-3xl p-8 sm:p-12 text-center"
+          className="mt-16 terminal-panel p-8 sm:p-12 text-center"
         >
           <Sparkles className="w-7 h-7 text-neon-magenta mx-auto mb-5" />
           <p className="font-display text-2xl sm:text-3xl font-bold mb-3">
             Replies usually within <span className="gradient-text">24 hours</span>.
           </p>
           <p className="text-foreground/70">
-            Even if it&apos;s just to say hi, share something you&apos;re working on, or argue
-            about synthesizers.
+            Best way to reach me is email or LinkedIn.
           </p>
         </motion.div>
       </section>

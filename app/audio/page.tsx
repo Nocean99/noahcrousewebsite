@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import { Volume2, Gamepad2, ArrowRight, Sparkles, Waves } from 'lucide-react';
 import Link from 'next/link';
 import Footer from '@/components/Footer';
-import OrbitalScene from '@/components/three/OrbitalSceneClient';
 
 const ease = [0.22, 1, 0.36, 1] as const;
 const fadeUp = {
@@ -83,7 +82,7 @@ function VideoCard({ project, accent }: { project: Project; accent: 'cyan' | 'ma
           {project.tools.map((tool) => (
             <span
               key={tool}
-              className="px-2.5 py-1 text-xs font-mono uppercase tracking-wider rounded-full border border-white/10 bg-white/[0.03] text-foreground/60"
+              className="px-2.5 py-1 text-xs font-mono uppercase tracking-wider border border-white/10 bg-white/[0.03] text-foreground/60"
             >
               {tool}
             </span>
@@ -98,10 +97,7 @@ export default function AudioPage() {
   return (
     <main className="min-h-screen w-full pt-32 pb-20">
       {/* Hero */}
-      <section className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
-        <div className="blob" style={{ background: '#ff3df0', width: 380, height: 380, top: '-10%', right: '-8%' }} />
-        <div className="blob" style={{ background: '#8a5cff', width: 340, height: 340, top: '20%', left: '-8%', animationDelay: '3s' }} />
-
+      <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
         <div className="grid lg:grid-cols-12 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -117,8 +113,7 @@ export default function AudioPage() {
               Sound that <span className="gradient-text">reacts</span>.
             </h1>
             <p className="text-xl text-foreground/75 max-w-xl leading-relaxed">
-              I design and implement interactive audio systems using synthesis, sampling,
-              and middleware like Wwise and FMOD.
+              Sound design, game audio implementation, and electronic music production.
             </p>
           </motion.div>
 
@@ -128,8 +123,20 @@ export default function AudioPage() {
             transition={{ duration: 0.8, ease, delay: 0.2 }}
             className="lg:col-span-5 relative aspect-square max-w-md mx-auto w-full"
           >
-            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-neon-magenta/30 to-neon-violet/30 blur-3xl" />
-            <OrbitalScene shape="torus" primary="#ff3df0" secondary="#8a5cff" />
+            <div className="terminal-panel h-full p-6 flex flex-col justify-between">
+              <div>
+                <p className="terminal-label mb-5">Audio tools</p>
+                <div className="space-y-3 font-mono text-xs uppercase tracking-widest">
+                  {['Wwise implementation', 'FMOD systems', 'Pro Tools redesigns', 'Unity integration', 'Synthesis / Foley'].map((item, index) => (
+                    <div key={item} className="flex items-center justify-between border-b border-white/10 pb-3">
+                      <span className="text-muted-foreground">0{index + 1}</span>
+                      <span className="text-foreground/80 text-right">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <Waves className="w-10 h-10 text-terminal-green" />
+            </div>
           </motion.div>
         </div>
       </section>
@@ -141,20 +148,12 @@ export default function AudioPage() {
         <motion.div {...fadeUp} transition={{ duration: 0.7, ease }}>
           <div className="flex items-baseline gap-4 mb-6">
             <span className="font-mono text-sm text-neon-cyan tracking-widest">01</span>
-            <div className="flex-1 h-px bg-gradient-to-r from-neon-cyan/40 via-white/10 to-transparent" />
+            <div className="flex-1 h-px bg-zinc-800" />
           </div>
           <h2 className="font-display text-4xl sm:text-5xl font-bold mb-8 gradient-text">The Story</h2>
           <div className="space-y-5 text-lg text-foreground/75 leading-relaxed">
             <p>
-              For more than a decade, I produced electronic music under the name Nocean, shaping
-              synths, layering textures, and building tracks that lived somewhere between ambient
-              and experimental. Music taught me how sound shapes emotion. how a filter sweep can
-              build tension, how silence can hit harder than a drop.
-            </p>
-            <p>
-              Eventually I wanted to build more than beats. I wanted the sounds to respond, to
-              react, to be part of something interactive. That&apos;s what pulled me into game
-              audio and sound design.
+              I&apos;ve produced electronic music as Nocean for over a decade. That background carries into my work with sound design, game audio, and interactive systems.
             </p>
           </div>
         </motion.div>
@@ -165,15 +164,14 @@ export default function AudioPage() {
         <motion.div {...fadeUp} transition={{ duration: 0.7, ease }} className="mb-12">
           <div className="flex items-baseline gap-4 mb-6">
             <span className="font-mono text-sm text-neon-cyan tracking-widest">02</span>
-            <div className="flex-1 h-px bg-gradient-to-r from-neon-cyan/40 via-white/10 to-transparent" />
+            <div className="flex-1 h-px bg-zinc-800" />
           </div>
           <div className="flex items-center gap-3 mb-4">
             <Volume2 className="w-8 h-8 text-neon-cyan" />
             <h2 className="font-display text-4xl sm:text-5xl font-bold">Sound Redesigns</h2>
           </div>
           <p className="text-foreground/70 max-w-3xl">
-            Complete audio redesigns of existing game and animation footage. stripping the original
-            audio and rebuilding every layer from scratch.
+            Audio rebuilt from scratch for game and animation footage.
           </p>
         </motion.div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -194,15 +192,14 @@ export default function AudioPage() {
         <motion.div {...fadeUp} transition={{ duration: 0.7, ease }} className="mb-12">
           <div className="flex items-baseline gap-4 mb-6">
             <span className="font-mono text-sm text-neon-magenta tracking-widest">03</span>
-            <div className="flex-1 h-px bg-gradient-to-r from-neon-magenta/40 via-white/10 to-transparent" />
+            <div className="flex-1 h-px bg-zinc-800" />
           </div>
           <div className="flex items-center gap-3 mb-4">
             <Gamepad2 className="w-8 h-8 text-neon-magenta" />
             <h2 className="font-display text-4xl sm:text-5xl font-bold">Audio Implementations</h2>
           </div>
           <p className="text-foreground/70 max-w-3xl">
-            Game audio built from the ground up. Middleware integration, adaptive music systems,
-            and physics-driven sound.
+            Middleware integration, adaptive music systems, and physics-driven sound.
           </p>
         </motion.div>
         <div className="grid md:grid-cols-2 gap-6">
@@ -223,7 +220,7 @@ export default function AudioPage() {
         <motion.div {...fadeUp} transition={{ duration: 0.7, ease }}>
           <div className="flex items-baseline gap-4 mb-6">
             <span className="font-mono text-sm text-neon-cyan tracking-widest">04</span>
-            <div className="flex-1 h-px bg-gradient-to-r from-neon-cyan/40 via-white/10 to-transparent" />
+            <div className="flex-1 h-px bg-zinc-800" />
           </div>
           <h2 className="font-display text-4xl sm:text-5xl font-bold mb-6 gradient-text">Toolkit</h2>
           <p className="text-lg text-foreground/75 leading-relaxed">
@@ -236,7 +233,7 @@ export default function AudioPage() {
 
       {/* SoundCloud CTA */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-        <motion.div {...fadeUp} transition={{ duration: 0.7, ease }} className="glass-strong rounded-3xl p-10 sm:p-14 text-center relative overflow-hidden">
+        <motion.div {...fadeUp} transition={{ duration: 0.7, ease }} className="terminal-panel p-10 sm:p-14 text-center relative overflow-hidden">
           <Sparkles className="w-8 h-8 text-neon-magenta mx-auto mb-6" />
           <h2 className="font-display text-3xl sm:text-4xl font-bold mb-4">
             Listen to <span className="gradient-text">Nocean</span>
