@@ -60,7 +60,7 @@ const caseStudies: CaseStudy[] = [
     whatILearned:
       'Review strategy should depend on sensor modality. RGB vehicle evidence benefited from semantic cleanup, while infrared evidence performed better with fast local hot-blob triage when the signal was already strong.',
     techStack: ['Python', 'Computer Vision', 'Evaluation Pipelines', 'RGB/IR Workflows', 'Human-in-the-loop AI'],
-    links: [],
+    links: [{ label: 'GitHub', href: 'https://github.com/Nocean99/Aegis' }],
     benchmark: [
       { modality: 'RGB', strategy: 'Local vehicle proposals', images: '500', precision: '50.0%', recall: '100.0%', f1: '66.7%' },
       { modality: 'RGB', strategy: 'API semantic review', images: '100', precision: '73.2%', recall: '95.3%', f1: '82.8%' },
